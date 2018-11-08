@@ -132,5 +132,21 @@
 	</div>
 </div>
 
+
+<script>
+
+var grad = document.getElementsByName('grad');
+console.log(grad.length);
+for(i=0;i<grad.length;i++){
+	test = grad[i].checked;
+	console.log(i + ": " + test);
+}
+
+// when making selection, check to see if other checkbox in set is checked;
+// if yes: remove check from other checkbox and check current selection
+// if no: just add the check!
+
+</script>
+
 </body>
 </html>

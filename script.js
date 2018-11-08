@@ -22,11 +22,16 @@ amount=5000;
 type = 'Loan';
 risk = 2;
 
-getIncome();
-getPayments();
+d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVXcAwXZjLK4-3tiyxKwj8yaVMVDmks5b6b8NwA%3D%3D", function(error, data) {
+//   if (error) throw error;
+getIncome(data);
+getPayments(data);
+
+});
+
 
 // wrap modular activities into functions
-function getIncome() {
+function getIncome(data) {
 
 variable= 'Income';
 
@@ -53,8 +58,8 @@ var svg1 = d3.select("#inc_payments")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // data
-d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVXcAwXZjLK4-3tiyxKwj8yaVMVDmks5b6b8NwA%3D%3D", function(error, data) {
-  if (error) throw error;
+// d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVXcAwXZjLK4-3tiyxKwj8yaVMVDmks5b6b8NwA%3D%3D", function(error, data) {
+//   if (error) throw error;
 
   // filter by selection
   data = data.filter(function(d) { 
@@ -108,12 +113,12 @@ d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/dat
       .tickSize(-width)
       );
 
-});
+// });
 
 }
 
 
-function getPayments() {
+function getPayments(data) {
 
 variable= 'Payments';
 
@@ -140,8 +145,8 @@ var svg2 = d3.select("#consumption")
           "translate(" + margin.left + "," + margin.top + ")");
 
 // data
-d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVXcAwXZjLK4-3tiyxKwj8yaVMVDmks5b6b8NwA%3D%3D", function(error, data) {
-  if (error) throw error;
+// d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVXcAwXZjLK4-3tiyxKwj8yaVMVDmks5b6b8NwA%3D%3D", function(error, data) {
+//   if (error) throw error;
 
   // filter by selection
   data = data.filter(function(d) { 
@@ -188,6 +193,6 @@ d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/dat
   svg2.append("g")
       .call(d3.axisLeft(y));
 
-});
+// });
 
 }
