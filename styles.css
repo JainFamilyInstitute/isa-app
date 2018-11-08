@@ -1,3 +1,5 @@
+/*svgs*/
+
 .line { 
     stroke: #ED574B;
     stroke-width: 3;
@@ -24,4 +26,18 @@
     stroke: grey;
     stroke-width: 1;
     shape-rendering: crispEdges;
+}
+
+/*Interface*/
+html, body {
+	top:0;
+	left:0;
+	margin:0;
+	width:100%;
+}
+
+.assessment {
+	width:60%;
+	height:100vh;
+	display:inline-block;
 }

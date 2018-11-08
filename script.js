@@ -23,7 +23,7 @@ type = 'Loan';
 risk = 2;
 
 getIncome();
-// getPayments();
+getPayments();
 
 // wrap modular activities into functions
 function getIncome() {
@@ -45,9 +45,7 @@ valueline = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
-var svg1 = d3.select("body")
-  .append("svg")
-  .attr("id","income")
+var svg1 = d3.select("#inc_payments")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -134,9 +132,7 @@ valueline = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
-var svg2 = d3.select("body")
-  .append("svg")
-  .attr("id","payments")
+var svg2 = d3.select("#consumption")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
