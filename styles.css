@@ -1,7 +1,21 @@
 .line { 
-    stroke: steelblue;
-    stroke-width: 2;
+    stroke: #ED574B;
+    stroke-width: 3;
     fill: none;
+    z-index:100;
+}
+
+.tick line {
+	stroke: #CCCCCC;
+	stroke-width:0.2;
+}
+
+.tick text {
+	fill: #666666;
+}
+
+.domain {
+	stroke: none;
 }
 
 .axis path,

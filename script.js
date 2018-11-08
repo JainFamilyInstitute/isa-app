@@ -41,7 +41,7 @@ x = d3.scaleLinear()
 y = d3.scaleLinear()
   .rangeRound([height,0]);
 
- valueline = d3.line()
+valueline = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
@@ -69,6 +69,7 @@ d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/dat
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
+  console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
@@ -99,8 +100,15 @@ d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/dat
       .call(d3.axisBottom(x));
 
   // Add the Y Axis
+    function y_grid_lines() {
+    return d3.axisLeft(y)
+  }
+
   svg1.append("g")
-      .call(d3.axisLeft(y));
+    .attr("class", "grid")
+    .call(y_grid_lines()
+      .tickSize(-width)
+      );
 
 });
 
@@ -112,17 +120,17 @@ function getPayments() {
 variable= 'Payments';
 
 // chart stuff
- margin = {top: h/4, right: w/4, bottom: h/4, left: w/4},
+margin = {top: h/4, right: w/4, bottom: h/4, left: w/4},
     width = window.innerWidth - margin.left - margin.right,
     height = window.innerHeight - margin.top - margin.bottom;
 
- x = d3.scaleLinear()
+x = d3.scaleLinear()
   .rangeRound([0, width]);
 
 y = d3.scaleLinear()
   .rangeRound([height,0]);
 
- valueline = d3.line()
+valueline = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
@@ -150,6 +158,7 @@ d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/dat
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
+  console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
