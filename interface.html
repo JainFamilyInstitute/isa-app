@@ -2,11 +2,12 @@
 <html>
 <head>
 	<title>Interface Sketch</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
 <div class="assessment">
-	<div class="info">
+	<div class="summary">
 		<h1>Lifetime Welfare Based on College Financing</h1>
 		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
 		nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
@@ -23,21 +24,33 @@
 			</div>
 			<div class="filter">
 				<h2>College Graduation</h2>
+				<div class="option">
 				  <input type="checkbox" value="1" name="grad">
 				  <label for="grad">Yes</label>
+				</div>
+				<div class="option">				
 				  <input type="checkbox" value="0" name="grad">
 				  <label for="grad">No</label>
+				</div>
 			</div>
 			<div class="filter">
 				<h2>Income Level</h2>
+				<div class="option">
 				  <input type="checkbox" value="1" name="quantile">
 				  <label for="quantile">1</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="2" name="quantile">
 				  <label for="quantile">2</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="3" name="quantile">
 				  <label for="quantile">3</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="4" name="quantile">
 				  <label for="quantile">4</label>
+				 </div>
 			</div>
 		</div>
 		<!-- Financing -->
@@ -48,12 +61,18 @@
 			</div>
 			<div class="filter">
 				<h2>Amount</h2>
+				<div class="option">
 				  <input type="checkbox" value="5000" name="amount">
 				  <label for="amount">$5k</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="300000" name="amount">
 				  <label for="amount">$30k</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="700000" name="amount">
 				  <label for="amount">$70k</label>
+				 </div>
 			</div>
 		</div>
 		<!-- Risk -->
@@ -64,24 +83,32 @@
 			</div>
 			<div class="filter">
 				<h2>Risk Aversion</h2>
+				<div class="option">
 				  <input type="checkbox" value="1" name="risk">
 				  <label for="risk">1</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="2" name="risk">
 				  <label for="risk">2</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="3" name="risk">
 				  <label for="risk">3</label>
+				 </div>
+				 <div class="option">
 				  <input type="checkbox" value="4" name="risk">
 				  <label for="risk">4</label>
+				 </div>
 			</div>
 		</div>
 	</div>
 
 	<div class="insights">
 		<div class="sticker">
-			<div id="premium"></div>
+			<div id="premium">X%</div>
 			<p>College Premium Given Up</p>
 		</div>
-		<div class="info"></div>
+		<div class="info">i</div>
 		<div class="learn-more">
 			<h1>Interpreting Your Results</h1>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
@@ -91,8 +118,18 @@
 </div>
 
 <div class="results">
-	<svg id="one"></svg>
-	<svg id="two"></svg>
+	<div class="chart">
+		<div class="alert">
+			<h2>Please do this</h2>
+		</div>
+		<svg id="one"></svg>
+	</div>
+	<div class="chart">
+		<div class="alert">
+			<h2>Please do this</h2>
+		</div>
+		<svg id="two"></svg>
+	</div>
 </div>
 
 </body>

@@ -1,3 +1,75 @@
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunti.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunti.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunti.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunti.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunti.svg#1f119954ff6b70c37e3ddb61d2164971') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  100;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunrm.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunrm.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunrm.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunrm.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunrm.svg#b19a3fcc59b1d4740e6d6e9eb9cec199') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  100;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunti.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunti.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunti.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunti.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunti.svg#1f119954ff6b70c37e3ddb61d2164971') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunrm.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunrm.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunrm.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunrm.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunrm.svg#b19a3fcc59b1d4740e6d6e9eb9cec199') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunbi.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunbi.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunbi.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunbi.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunbi.svg#51e40c307490eb4f915148e752c550d1') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'CMU Serif';
+  src: url('fonts/cmunbx.eot'); /* IE9 Compat Modes */
+  src: url('fonts/cmunbx.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/cmunbx.woff') format('woff'), /* Modern Browsers */
+       url('fonts/cmunbx.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/cmunbx.svg#d7e0fafe6573441f0dfff33be5e578f6') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  700;
+}
+
 /*svgs*/
 
 .line { 
@@ -28,6 +100,36 @@
     shape-rendering: crispEdges;
 }
 
+.chart {
+	width:80%;
+	height:40vh;
+	margin:auto;
+	background-color:;
+	margin-top:5%;
+}
+
+.alert {
+	background-color: #E6E6E6;
+	height:100%;
+}
+
+.alert h2 {
+	position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin:auto;
+    vertical-align:middle;
+    text-align:center;
+    font-weight:200;
+    width:80%;
+    color: #999999;
+    font-family: 'Helvetica Neue';
+    font-weight:600;
+    font-size:1em;
+}
+
 /*Interface*/
 html, body {
 	top:0;
@@ -37,7 +139,145 @@ html, body {
 }
 
 .assessment {
-	width:60%;
+	width:50%;
 	height:100vh;
+	margin:0%;
 	display:inline-block;
+	padding:2% 5% 2% 5%;
+}
+
+.results {
+	vertical-align:top;
+	margin:0%;
+	width:39%;
+	height:100vh;
+	background-color:#F2F2F2;
+	display:inline-block;
+}
+
+.assessment h1 {
+	color: #ED574B;
+	font-family: 'CMU Serif';
+	font-weight:100;
+	font-size:2em;
+}
+
+.assessment p {
+	font-family: 'CMU Serif';
+	font-weight:100;
+	font-size:1em;
+	color:black;
+}
+
+.title h1 {
+	font-family: 'Helvetica Neue';
+	font-weight:600;
+	font-size:1em;
+	color:#666666;
+	display:inline-block;
+}
+
+.cat {
+	display:inline-block;
+	width:25%;
+	vertical-align: top;
+	margin-right:5%;
+}
+
+.info {
+	display:inline-block;
+	background-color: #B3B3B3;
+	font-family:'CMU Serif';
+	font-style:italic;
+	font-weight:700;
+	color:#F2F2F2;
+	font-size:0.05em;
+	padding:0.3em 0.8em 0.3em 0.8em;
+	vertical-align:middle;
+	border-radius:50%;
+}
+
+.option {
+	display:block;
+	margin-bottom:1%;
+}
+
+.filter h2 {
+	font-family: 'Helvetica Neue';
+	font-size: 0.8em;
+	color: #ED574B;
+}
+
+label {
+	font-family: 'Helvetica Neue';
+	color: #666666;
+	font-size:0.7em;
+	font-weight:600;
+	margin-left: 5%;
+}
+
+input[type=checkbox] {
+		   position: relative;
+	       cursor: pointer;
+    }
+    input[type=checkbox]:before {
+         content: "";
+         display: block;
+         position: absolute;
+         width: 16px;
+         height: 16px;
+         top: 0;
+         left: 0;
+         border: 0.05em solid #666666;
+         background-color: white;
+}
+    input[type=checkbox]:checked:after {
+         content: "X";
+         color:white;
+         font-weight: 600;
+         text-align:center;
+         display: block;
+         position: absolute;
+         width: 16px;
+         height: 16px;
+         top: 0;
+         left: 0;
+         border: 0.05em solid #ED574B;
+         background-color: #ED574B;
+}
+
+.sticker {
+	display:inline-block;
+	width:20%;
+	margin-top:5%;
+}
+.sticker p {
+	font-family: 'Helvetica Neue';
+	font-size: 0.8em;
+	font-weight:600;
+	line-height:1em;
+}
+
+#premium {
+	font-family: 'Helvetica Neue';
+	font-size:3em;
+	font-weight:600;
+	color: black;
+	line-height:0.5em;
+}
+.insights .info {
+	margin-top:-10%;
+	margin-left:-2%;
+}
+.learn-more {
+	display:inline-block;
+	width:60%;
+	margin-left:10%;
+}
+
+.learn-more h1 {
+	font-family: 'Helvetica Neue';
+	font-weight:600;
+	color:black;
+	font-size:1em;
 }
