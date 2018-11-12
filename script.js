@@ -1,6 +1,6 @@
 // variables we'll be filtering by
 var grad;
-var quantile;
+var quartile;
 var amount;
 var type;
 var risk;
@@ -21,7 +21,7 @@ h = getInnerHeight(chart);
 // <-- Make Selection -->
 // Possible values --
 // grad: [1 0]
-// quantile: [1 2 3 4]
+// quartile: [1 2 3 4]
 // variable: ['Income' 'Payments' 'Consumption' 'Utility']
 // amount: [ 5000 30000 70000]
 // type: ['Loan' 'ISA' 'Free']
@@ -29,12 +29,12 @@ h = getInnerHeight(chart);
 
 // now let's pretend we're making a selection - this will be dynamically stored based on user input later
 var grad_default = document.querySelector('input[name="grad"][value="1"]').checked = true;
-  var quantile_default = document.querySelector('input[name="quantile"][value="1"]').checked = true;
+  var quartile_default = document.querySelector('input[name="quartile"][value="1"]').checked = true;
   var amount_default = document.querySelector('input[name="amount"][value="70000"]').checked = true;
   var risk_default = document.querySelector('input[name="risk"][value="1"]').checked = true;
 
 var grad_checked = document.querySelectorAll('input[name="grad"]:checked');
-    var quantile_checked = document.querySelectorAll('input[name="quantile"]:checked');
+    var quartile_checked = document.querySelectorAll('input[name="quartile"]:checked');
     var amount_checked = document.querySelectorAll('input[name="amount"]:checked');
     var risk_checked = document.querySelectorAll('input[name="risk"]:checked');
 
@@ -42,8 +42,8 @@ for(i=0;i<grad_checked.length;i++){
   grad=grad_checked[i].value;
   console.log(grad)
 }
-for(i=0;i<quantile_checked.length;i++){
-  quantile=quantile_checked[i].value;
+for(i=0;i<quartile_checked.length;i++){
+  quartile=quartile_checked[i].value;
 }
 for(i=0;i<amount_checked.length;i++){
   amount=amount_checked[i].value;
@@ -66,18 +66,18 @@ status();
 for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     status();
-    console.log(grad + quantile + amount + type + risk);
+    console.log(grad + quartile + amount + type + risk);
     update();
   }
 }
 
 function status() {
     grad_checked = document.querySelectorAll('input[name="grad"]:checked');
-    quantile_checked = document.querySelectorAll('input[name="quantile"]:checked');
+    quartile_checked = document.querySelectorAll('input[name="quartile"]:checked');
     amount_checked = document.querySelectorAll('input[name="amount"]:checked');
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
-    console.log(grad_checked.length + "," + quantile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
-    if(grad_checked.length == 0 | quantile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
+    console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
+    if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
       alerts[0].style.width="100%";
       alerts[1].style.display="inline-block";
@@ -87,7 +87,7 @@ function status() {
       message1.innerHTML="Please enter your demographics"
       message2.innerHTML="Please enter your demographics"
     }
-    if (grad_checked.length == 1 & quantile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
+    if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
       alerts[1].style.display="none";
       svg1.style.display="inline-block";
@@ -95,8 +95,8 @@ function status() {
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
-      for(i=0;i<quantile_checked.length;i++){
-        quantile=quantile_checked[i].value;
+      for(i=0;i<quartile_checked.length;i++){
+        quartile=quartile_checked[i].value;
       }
       for(i=0;i<amount_checked.length;i++){
         amount=amount_checked[i].value;
@@ -109,7 +109,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVQOBnY3R6QBfyMv1QE-0q7HRLS_Bks5b8vs3wA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVRe2vdAFYXmRstaM_4TETeNWq3Lbks5b8w8SwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
   getPayments(data);
@@ -120,7 +120,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVQOBnY3R6QBfyMv1QE-0q7HRLS_Bks5b8vs3wA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVRe2vdAFYXmRstaM_4TETeNWq3Lbks5b8w8SwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
   updatePayments(data);
@@ -159,14 +159,14 @@ var svg1 = d3.select("#one")
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
@@ -214,7 +214,7 @@ var svg1 = d3.select("#one")
 
 function getPayments(data) {
 
-variable= 'Payments';
+variable= 'Consumption';
 
 // chart stuff
 margin = {top: h/10, right: w/10, bottom: h/10, left: w/10},
@@ -240,14 +240,14 @@ var svg2 = d3.select("#two")
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
@@ -317,14 +317,14 @@ var svg1 = d3.select("#one")
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
@@ -375,7 +375,7 @@ var svg1 = d3.select("#one")
 
 function getPayments(data) {
 
-variable= 'Payments';
+variable= 'Consumption';
 
 var svg2 = d3.select("#two")
     .attr("width", width + margin.left + margin.right)
@@ -386,14 +386,14 @@ var svg2 = d3.select("#two")
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
@@ -445,14 +445,14 @@ var svg1 = d3.select("#one").transition();
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
@@ -499,20 +499,20 @@ var svg1 = d3.select("#one").transition();
 
 function updatePayments(data) {
 
-variable= 'Payments';
+variable= 'Consumption';
 
 var svg2 = d3.select("#two").transition();
 
   // filter by selection
   data = data.filter(function(d) { 
-          return (d.quantile == quantile) &
+          return (d.quartile == quartile) &
           (d.variable == variable) &
           (d.amount == amount) &
           (d.type == type) &
           (d.risk == risk) }); 
 
   // create visualizable array with only ages and amounts for selected series
-  data_filtered = data.map(({ quantile,amount,risk,type,variable, ...item }) => item);
+  data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
   console.log(data_vis);
 
