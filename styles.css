@@ -224,10 +224,10 @@ input[type=radio] {
          content: "";
          display: block;
          position: absolute;
-         width: 16px;
-         height: 16px;
+         width: 18px;
+         height: 18px;
          top: 0;
-         left: 0;
+         left: -5%;
          border: 0.05em solid #666666;
          background-color: white;
 }
@@ -238,10 +238,10 @@ input[type=radio] {
          text-align:center;
          display: block;
          position: absolute;
-         width: 16px;
-         height: 16px;
+         width: 18px;
+         height: 18px;
          top: 0;
-         left: 0;
+         left: -5%;
          border: 0.05em solid #ED574B;
          background-color: #ED574B;
 }
