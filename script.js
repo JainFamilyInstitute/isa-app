@@ -20,11 +20,10 @@ h = getInnerHeight(chart);
 
 // <-- Make Selection -->
 // Possible values --
-// grad: [1 0]
 // quartile: [1 2 3 4]
 // variable: ['Income' 'Payments' 'Consumption' 'Utility']
-// amount: [ 5000 30000 70000]
-// type: ['Loan' 'ISA' 'Free']
+// amount: [ 5000     0 70000 30000]
+// type: ['ISA' 'cg' 'ISA-Purdue' 'debt' 'IDR' 'hsg']
 // risk: [1 2 3 4]
 
 // now let's pretend we're making a selection - this will be dynamically stored based on user input later
@@ -59,6 +58,10 @@ var message1 = document.querySelector('#message1');
 var message2 = document.querySelector('#message2');
 var svg1 = document.querySelector('#one');
 var svg2 = document.querySelector('#two');
+var buttons = document.querySelectorAll('.button');
+isa_button = document.getElementById('ISA');
+isa_button.style.backgroundColor="#ED574B";
+isa_button.style.color="white";
 
 status();
 
@@ -71,14 +74,25 @@ for (i=0;i<radios.length;i++){
   }
 }
 
+for (i=0;i<buttons.length;i++){
+  buttons[i].onclick= function() {
+    type = this.id;
+    console.log(type);
+    for(i=0;i<buttons.length;i++){
+      buttons[i].style.backgroundColor="#CCCC";
+      buttons[i].style.color="#666666";
+    }
+    this.style.backgroundColor="#ED574B";
+    this.style.color="white";
+    update();
+  }
+}
+
 function status() {
     grad_checked = document.querySelectorAll('input[name="grad"]:checked');
     quartile_checked = document.querySelectorAll('input[name="quartile"]:checked');
     amount_checked = document.querySelectorAll('input[name="amount"]:checked');
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
-    isa_button = document.getElementById('isa');
-    isa.style.backgroundColor="#ED574B";
-    isa.style.color="white";
     console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
