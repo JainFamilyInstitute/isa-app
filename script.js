@@ -76,6 +76,9 @@ function status() {
     quartile_checked = document.querySelectorAll('input[name="quartile"]:checked');
     amount_checked = document.querySelectorAll('input[name="amount"]:checked');
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
+    isa_button = document.getElementById('isa');
+    isa.style.backgroundColor="#ED574B";
+    isa.style.color="white";
     console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
@@ -129,7 +132,7 @@ function update() {
 }
 
 // chart stuff
- margin = {top: h/10, right: w/10, bottom: h/10, left: w/10},
+ margin = {top: h/8, right: w/10, bottom: h/8, left: w/10},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 

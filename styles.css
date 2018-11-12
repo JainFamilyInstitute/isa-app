@@ -105,7 +105,7 @@
 	height:40vh;
 	margin:auto;
 	background-color:;
-	margin-top:5%;
+	margin-top:1%;
 }
 
 .alert {
@@ -280,4 +280,23 @@ input[type=radio] {
 	font-weight:600;
 	color:black;
 	font-size:1em;
+}
+
+.agent .button {
+  display:inline-block;
+  font-family: 'Helvetica Neue';
+  font-weight:600;
+  color:black;
+  font-size:0.7em;
+  margin:2%;
+  background-color: #CCCC;
+  color:#666666;
+  padding:2% 5%;
+  cursor:pointer;
+}
+
+
+.agent {
+  padding-top:3%;
+  padding-left:5%;
 }
