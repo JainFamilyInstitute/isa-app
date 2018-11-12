@@ -299,4 +299,31 @@ input[type=radio] {
 .agent {
   padding-top:3%;
   padding-left:5%;
+  margin-bottom:8%;
+}
+.chart-title {
+  font-family: 'CMU Serif';
+  font-size:1em;
+  font-style:italic;
+  line-height:0em;
+  font-weight:100;
+  padding:0;
+  margin-top:3%;
+  margin-bottom:-3%;
+  color:#666666;
+}
+
+em1 {
+  font-weight:600;
+  color:#ED574B;
+}
+
+em2 {
+  font-weight:600;
+  color:#0000FF;
+}
+
+em3 {
+  font-weight:600;
+  color:black;
 }

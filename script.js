@@ -68,6 +68,7 @@ status();
 
 for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
+    document.querySelector('input[name="grad"][value="0"]').checked = false;
     status();
     console.log(grad + quartile + amount + type + risk);
     update();
@@ -174,6 +175,11 @@ var svg1 = d3.select("#one")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+// d3.select("h1").html("<span class='h-bold'>‡</span>" + "<div class='one'>economic effects</div>"
+//                  +"<img class='effects' src='assets/4_icon.png'>");
+d3.select('#label1').html("Lifetime "+ "<em1>Income </em1>" + "and " + "<em2>Payments</em2>");
+d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
 
   // filter by selection
   data1 = data.filter(function(d) { 
@@ -317,6 +323,7 @@ var svg2 = d3.select("#two")
       .data([result])
       .attr("class", "line")
       .attr("id", "line2")
+      .style("stroke", "black")
       .attr("d", valueline);
 
   // Add the X Axis
