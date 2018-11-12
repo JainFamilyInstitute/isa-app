@@ -111,6 +111,7 @@
 .alert {
 	background-color: #E6E6E6;
 	height:100%;
+  display:none;
 }
 
 .alert h2 {
@@ -215,11 +216,11 @@ label {
 	margin-left: 5%;
 }
 
-input[type=checkbox] {
+input[type=radio] {
 		   position: relative;
 	       cursor: pointer;
     }
-    input[type=checkbox]:before {
+    input[type=radio]:before {
          content: "";
          display: block;
          position: absolute;
@@ -230,7 +231,7 @@ input[type=checkbox] {
          border: 0.05em solid #666666;
          background-color: white;
 }
-    input[type=checkbox]:checked:after {
+    input[type=radio]:checked:after {
          content: "X";
          color:white;
          font-weight: 600;

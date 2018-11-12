@@ -3,6 +3,7 @@
 <head>
 	<title>Interface Sketch</title>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
 
@@ -25,31 +26,31 @@
 			<div class="filter">
 				<h2>College Graduation</h2>
 				<div class="option">
-				  <input type="checkbox" value="1" name="grad">
+				  <input type="radio" value="1" name="grad">
 				  <label for="grad">Yes</label>
 				</div>
 				<div class="option">				
-				  <input type="checkbox" value="0" name="grad">
+				  <input type="radio" value="0" name="grad">
 				  <label for="grad">No</label>
 				</div>
 			</div>
 			<div class="filter">
 				<h2>Income Level</h2>
 				<div class="option">
-				  <input type="checkbox" value="1" name="quantile">
-				  <label for="quantile">1</label>
+				  <input type="radio" value="1" name="quartile">
+				  <label for="quartile">1</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="2" name="quantile">
-				  <label for="quantile">2</label>
+				  <input type="radio" value="2" name="quartile">
+				  <label for="quartile">2</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="3" name="quantile">
-				  <label for="quantile">3</label>
+				  <input type="radio" value="3" name="quartile">
+				  <label for="quartile">3</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="4" name="quantile">
-				  <label for="quantile">4</label>
+				  <input type="radio" value="4" name="quartile">
+				  <label for="quartile">4</label>
 				 </div>
 			</div>
 		</div>
@@ -62,15 +63,15 @@
 			<div class="filter">
 				<h2>Amount</h2>
 				<div class="option">
-				  <input type="checkbox" value="5000" name="amount">
+				  <input type="radio" value="5000" name="amount">
 				  <label for="amount">$5k</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="300000" name="amount">
+				  <input type="radio" value="30000" name="amount">
 				  <label for="amount">$30k</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="700000" name="amount">
+				  <input type="radio" value="70000" name="amount">
 				  <label for="amount">$70k</label>
 				 </div>
 			</div>
@@ -84,19 +85,19 @@
 			<div class="filter">
 				<h2>Risk Aversion</h2>
 				<div class="option">
-				  <input type="checkbox" value="1" name="risk">
+				  <input type="radio" value="1" name="risk">
 				  <label for="risk">1</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="2" name="risk">
+				  <input type="radio" value="2" name="risk">
 				  <label for="risk">2</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="3" name="risk">
+				  <input type="radio" value="3" name="risk">
 				  <label for="risk">3</label>
 				 </div>
 				 <div class="option">
-				  <input type="checkbox" value="4" name="risk">
+				  <input type="radio" value="4" name="risk">
 				  <label for="risk">4</label>
 				 </div>
 			</div>
@@ -118,35 +119,21 @@
 </div>
 
 <div class="results">
-	<div class="chart">
+	<div class="chart" id="chart1">
 		<div class="alert">
-			<h2>Please do this</h2>
+			<h2 id="message1">Please do this</h2>
 		</div>
 		<svg id="one"></svg>
 	</div>
-	<div class="chart">
+	<div class="chart" id="chart2">
 		<div class="alert">
-			<h2>Please do this</h2>
+			<h2 id="message2">Please do this</h2>
 		</div>
 		<svg id="two"></svg>
 	</div>
 </div>
 
-
-<script>
-
-var grad = document.getElementsByName('grad');
-console.log(grad.length);
-for(i=0;i<grad.length;i++){
-	test = grad[i].checked;
-	console.log(i + ": " + test);
-}
-
-// when making selection, check to see if other checkbox in set is checked;
-// if yes: remove check from other checkbox and check current selection
-// if no: just add the check!
-
-</script>
+<script type="text/javascript" src="script.js"></script>
 
 </body>
 </html>
