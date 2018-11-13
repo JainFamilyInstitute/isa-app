@@ -39,7 +39,6 @@ var grad_checked = document.querySelectorAll('input[name="grad"]:checked');
 
 for(i=0;i<grad_checked.length;i++){
   grad=grad_checked[i].value;
-  console.log(grad)
 }
 for(i=0;i<quartile_checked.length;i++){
   quartile=quartile_checked[i].value;
@@ -78,7 +77,6 @@ for (i=0;i<radios.length;i++){
 for (i=0;i<buttons.length;i++){
   buttons[i].onclick= function() {
     type = this.id;
-    console.log(type);
     for(i=0;i<buttons.length;i++){
       buttons[i].style.backgroundColor="#CCCC";
       buttons[i].style.color="#666666";
@@ -165,7 +163,7 @@ valueline2 = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
-// update data functions
+// get data functions
 
 function getIncome(data) {
 
@@ -176,8 +174,6 @@ var svg1 = d3.select("#one")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-// d3.select("h1").html("<span class='h-bold'>‡</span>" + "<div class='one'>economic effects</div>"
-//                  +"<img class='effects' src='assets/4_icon.png'>");
 d3.select('#label1').html("Lifetime "+ "<em1>Income </em1>" + "and " + "<em2>Payments</em2>");
 d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
 
@@ -192,7 +188,6 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data1.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
-  // console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
@@ -219,7 +214,6 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   // create visualizable array with only ages and amounts for selected series
   data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis2 = data_filtered2[0];
-  console.log(data_vis2);
 
   result2 = [];
   for(i=22;i<101;i++){
@@ -235,10 +229,12 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
     }
   }
 
+  console.log(result2);
+
   income_max = d3.max(result, function(d) { return d.value; });
   payment_max = d3.max(result2, function(d) { return d.value; });
   max = Math.max(income_max, payment_max);
-  console.log(payment_max);
+  console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
@@ -270,9 +266,11 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
 
   svg1.append("g")
     .attr("class", "grid")
-    .call(y_grid_lines()
-      .tickSize(-width)
-      );
+    .attr("id", "y-axis1")
+    // .call(y_grid_lines()
+    //   .tickSize(-width)
+    //   );
+    .call(d3.axisLeft(y));
 
 }
 
@@ -299,20 +297,20 @@ var svg2 = d3.select("#two")
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
-  console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
     key = i;
     value =parseFloat(data_vis[i]);
-    result.push({
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result.push({
             key: key,
             value: value
         });
+    }
   }
-
-  // console.log(data_vis);
-  console.log(result);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
@@ -358,7 +356,6 @@ var svg1 = d3.select("#one").transition();
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data1.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
-  // console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
@@ -385,7 +382,6 @@ var svg1 = d3.select("#one").transition();
   // create visualizable array with only ages and amounts for selected series
   data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis2 = data_filtered2[0];
-  console.log(data_vis2);
 
   result2 = [];
   for(i=22;i<101;i++){
@@ -401,14 +397,16 @@ var svg1 = d3.select("#one").transition();
     }
   }
 
+  console.log(result2);
+
   income_max = d3.max(result, function(d) { return d.value; });
   payment_max = d3.max(result2, function(d) { return d.value; });
   max = Math.max(income_max, payment_max);
-  console.log(payment_max);
+  console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
-  x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  y.domain([0, d3.max(result, function(d) { return d.value; })]);
+ x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+ y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
   svg1.select("#line1")
@@ -430,7 +428,7 @@ var svg1 = d3.select("#one").transition();
   }
 
   svg1.select("#y-axis1")
-    .attr("class", "grid")
+    .duration(750)
     .call(y_grid_lines()
       .tickSize(-width)
       );
@@ -455,20 +453,21 @@ var svg2 = d3.select("#two").transition();
   // create visualizable array with only ages and amounts for selected series
   data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
-  console.log(data_vis);
 
   result = [];
   for(i=22;i<101;i++){
     key = i;
     value =parseFloat(data_vis[i]);
-    result.push({
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result.push({
             key: key,
             value: value
         });
+    }
   }
 
-  // console.log(data_vis);
-  console.log(result);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
@@ -488,11 +487,9 @@ var svg2 = d3.select("#two").transition();
     return d3.axisLeft(y)
   }
 
-  svg2.select("#y-axis1")
-    .attr("class", "grid")
-    .call(y_grid_lines()
-      .tickSize(-width)
-      );
+  svg2.select("#y-axis2")
+    .duration(750)
+    .call(d3.axisLeft(y));
 
 }
 
