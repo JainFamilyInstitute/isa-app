@@ -277,7 +277,7 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
     .attr("class", "grid")
     .attr("id", "y-axis1")
     .call(y_grid_lines()
-      .ticks(7)
+      .ticks(5)
       .tickSize(-width)
       );
 
@@ -347,7 +347,7 @@ var svg2 = d3.select("#two")
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
-      .ticks(7)
+      .ticks(5)
       .tickSize(-width)
       );
 
@@ -447,7 +447,7 @@ var svg1 = d3.select("#one").transition();
   svg1.select("#y-axis1")
     .duration(750)
     .call(y_grid_lines()
-      .ticks(7)
+      .ticks(5)
       .tickSize(-width)
       );
 
@@ -509,7 +509,7 @@ var svg2 = d3.select("#two").transition();
   svg2.select("#y-axis2")
     .duration(750)
     .call(y_grid_lines()
-      .ticks(7)
+      .ticks(5)
       .tickSize(-width)
       );
 
