@@ -153,7 +153,7 @@ function update() {
 }
 
 // chart stuff
- margin = {top: h/8, right: w/10, bottom: h/8, left: w/10},
+ margin = {top: h/4, right: w/6, bottom: h/4, left: w/10},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 
@@ -198,7 +198,7 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   data_vis = data_filtered[0];
 
   result = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
@@ -224,7 +224,7 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   data_vis2 = data_filtered2[0];
 
   result2 = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis2[i]);
     if(key == "Age") {
@@ -276,10 +276,10 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   svg1.append("g")
     .attr("class", "grid")
     .attr("id", "y-axis1")
-    // .call(y_grid_lines()
-    //   .tickSize(-width)
-    //   );
-    .call(d3.axisLeft(y));
+    .call(y_grid_lines()
+      .ticks(7)
+      .tickSize(-width)
+      );
 
 }
 
@@ -347,6 +347,7 @@ var svg2 = d3.select("#two")
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
+      .ticks(7)
       .tickSize(-width)
       );
 
@@ -373,7 +374,7 @@ var svg1 = d3.select("#one").transition();
   data_vis = data_filtered[0];
 
   result = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
@@ -399,7 +400,7 @@ var svg1 = d3.select("#one").transition();
   data_vis2 = data_filtered2[0];
 
   result2 = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis2[i]);
     if(key == "Age") {
@@ -446,6 +447,7 @@ var svg1 = d3.select("#one").transition();
   svg1.select("#y-axis1")
     .duration(750)
     .call(y_grid_lines()
+      .ticks(7)
       .tickSize(-width)
       );
 
@@ -507,6 +509,7 @@ var svg2 = d3.select("#two").transition();
   svg2.select("#y-axis2")
     .duration(750)
     .call(y_grid_lines()
+      .ticks(7)
       .tickSize(-width)
       );
 
