@@ -245,7 +245,8 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
   console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
-  x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
@@ -342,7 +343,7 @@ var svg2 = d3.select("#two")
     function y_grid_lines() {
     return d3.axisLeft(y)
   }
-  
+
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
@@ -419,7 +420,8 @@ var svg1 = d3.select("#one").transition();
   console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
- x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
  y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
