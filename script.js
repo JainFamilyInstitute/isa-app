@@ -102,8 +102,8 @@ function status() {
       alerts[0].style.width="100%";
       alerts[1].style.display="inline-block";
       alerts[1].style.width="100%";
-      svg1.style.display="none";
-      svg2.style.display="none";
+      svg1.style.opacity="none";
+      svg2.style.opacity="none";
       message1.innerHTML="Please enter your demographics";
       message2.innerHTML="Please enter your demographics";
       label1.style.display="none";
@@ -153,7 +153,7 @@ function update() {
 }
 
 // chart stuff
- margin = {top: h/4, right: w/6, bottom: h/4, left: w/10},
+ margin = {top: h/4, right: w/6, bottom: h/4, left: w/12},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 
@@ -184,6 +184,14 @@ var svg1 = d3.select("#one")
 
 d3.select('#label1').html("Lifetime "+ "<em1>Income </em1>" + "and " + "<em2>Payments</em2>");
 d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
+
+svg1.append("text")
+        .attr("x", width + 25)             
+        .attr("y", height + 15)
+        .attr("class", "x-label")  
+        .style("font-size", "0.8em") 
+        .style("font-style", "italic")  
+        .text("Age");
 
   // filter by selection
   data1 = data.filter(function(d) { 
@@ -278,6 +286,7 @@ d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
     .attr("id", "y-axis1")
     .call(y_grid_lines()
       .ticks(5)
+      .tickFormat(d3.format("$.0s"))
       .tickSize(-width)
       );
 
@@ -294,6 +303,14 @@ var svg2 = d3.select("#two")
   .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+svg2.append("text")
+        .attr("x", width + 25)             
+        .attr("y", height + 15)
+        .attr("class", "x-label")  
+        .style("font-size", "0.8em") 
+        .style("font-style", "italic")  
+        .text("Age");
 
   // filter by selection
   data = data.filter(function(d) { 
@@ -347,6 +364,7 @@ var svg2 = d3.select("#two")
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
+      .tickFormat(d3.format("$.0s"))
       .ticks(5)
       .tickSize(-width)
       );
@@ -448,6 +466,7 @@ var svg1 = d3.select("#one").transition();
     .duration(750)
     .call(y_grid_lines()
       .ticks(5)
+      .tickFormat(d3.format("$.0s"))
       .tickSize(-width)
       );
 
@@ -510,6 +529,7 @@ var svg2 = d3.select("#two").transition();
     .duration(750)
     .call(y_grid_lines()
       .ticks(5)
+      .tickFormat(d3.format("$.0s"))
       .tickSize(-width)
       );
 
