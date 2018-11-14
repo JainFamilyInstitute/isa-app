@@ -26,7 +26,7 @@ h = getInnerHeight(chart);
 // type: ['ISA' 'cg' 'ISA-Purdue' 'debt' 'IDR' 'hsg']
 // risk: [1 2 3 4]
 
-// now let's pretend we're making a selection - this will be dynamically stored based on user input later
+// default selection
 var grad_default = document.querySelector('input[name="grad"][value="1"]').checked = true;
   var quartile_default = document.querySelector('input[name="quartile"][value="1"]').checked = true;
   var amount_default = document.querySelector('input[name="amount"][value="70000"]').checked = true;
@@ -64,7 +64,7 @@ isa_button.style.color="white";
 
 status();
 
-
+// return results based on user input for demographics, financing and risk
 for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     document.querySelector('input[name="grad"][value="0"]').checked = false;
@@ -74,6 +74,7 @@ for (i=0;i<radios.length;i++){
   }
 }
 
+// return results based on agent (financial instrument) selection
 for (i=0;i<buttons.length;i++){
   buttons[i].onclick= function() {
     type = this.id;
@@ -87,11 +88,14 @@ for (i=0;i<buttons.length;i++){
   }
 }
 
+// <-- Functions -->
 function status() {
     grad_checked = document.querySelectorAll('input[name="grad"]:checked');
     quartile_checked = document.querySelectorAll('input[name="quartile"]:checked');
     amount_checked = document.querySelectorAll('input[name="amount"]:checked');
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
+    label1 = document.querySelector('#label1');
+    label2 = document.querySelector('#label2');
     console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
@@ -100,14 +104,18 @@ function status() {
       alerts[1].style.width="100%";
       svg1.style.display="none";
       svg2.style.display="none";
-      message1.innerHTML="Please enter your demographics"
-      message2.innerHTML="Please enter your demographics"
+      message1.innerHTML="Please enter your demographics";
+      message2.innerHTML="Please enter your demographics";
+      label1.style.display="none";
+      label2.style.display="none";
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
       alerts[1].style.display="none";
       svg1.style.display="inline-block";
       svg2.style.display="inline-block";
+      label1.style.display="block";
+      label2.style.display="block";
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
@@ -331,9 +339,15 @@ var svg2 = d3.select("#two")
       .call(d3.axisBottom(x));
 
   // Add the Y Axis
+    function y_grid_lines() {
+    return d3.axisLeft(y)
+  }
+  
   svg2.append("g")
       .attr("id","y-axis2")
-      .call(d3.axisLeft(y));
+      .call(y_grid_lines()
+      .tickSize(-width)
+      );
 
 }
 
@@ -467,6 +481,7 @@ var svg2 = d3.select("#two").transition();
         });
     }
   }
+  console.log(result);
 
 
   // Scale the range of the data
@@ -489,7 +504,9 @@ var svg2 = d3.select("#two").transition();
 
   svg2.select("#y-axis2")
     .duration(750)
-    .call(d3.axisLeft(y));
+    .call(y_grid_lines()
+      .tickSize(-width)
+      );
 
 }
 
