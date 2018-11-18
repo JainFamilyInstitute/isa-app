@@ -193,7 +193,7 @@ svg1.append("text")
         .style("font-style", "italic")  
         .text("Age");
 
-  // filter by selection
+  // First fetch: Income Data
   data1 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Income') &
@@ -219,7 +219,7 @@ svg1.append("text")
     }
   }
 
-    // filter by selection
+    // First fetch: Payments Data
   data2 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Payment') &
@@ -312,7 +312,7 @@ svg2.append("text")
         .style("font-style", "italic")  
         .text("Age");
 
-  // filter by selection
+ // First fetch: Consumption Data
   data = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == variable) &
@@ -379,7 +379,7 @@ variable= 'Income';
 
 var svg1 = d3.select("#one").transition();
 
-  // filter by selection
+  // Update fetch: Income Data
    data1 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Income') &
@@ -405,7 +405,7 @@ var svg1 = d3.select("#one").transition();
     }
   }
 
-    // filter by selection
+  // Update fetch: Payments Data
   data2 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Payment') &
@@ -491,6 +491,7 @@ var svg2 = d3.select("#two").transition();
   data_filtered = data.map(({ quartile,amount,risk,type,variable, ...item }) => item);
   data_vis = data_filtered[0];
 
+  // Update fetch: Consumption Data
   result = [];
   for(i=22;i<101;i++){
     key = i;
