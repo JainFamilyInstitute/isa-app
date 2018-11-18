@@ -286,7 +286,7 @@ svg1.append("text")
     .attr("id", "y-axis1")
     .call(y_grid_lines()
       .ticks(5)
-      .tickFormat(d3.format("$.0s"))
+      // .tickFormat(d3.format("$.0s"))
       .tickSize(-width)
       );
 
@@ -364,7 +364,7 @@ svg2.append("text")
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
-      .tickFormat(d3.format("$.0s"))
+      // .tickFormat(d3.format("$.0s"))
       .ticks(5)
       .tickSize(-width)
       );
