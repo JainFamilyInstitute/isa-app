@@ -133,7 +133,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVRe2vdAFYXmRstaM_4TETeNWq3Lbks5b8w8SwA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVY_rVhbGwNNoh0HDLt5qo1N_s26sks5b-e80wA%3D%3D", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
   getConsumption(data);
@@ -144,7 +144,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis.csv?token=AXiiVRe2vdAFYXmRstaM_4TETeNWq3Lbks5b8w8SwA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVY_rVhbGwNNoh0HDLt5qo1N_s26sks5b-e80wA%3D%3D", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
   updateConsumption(data);
@@ -286,7 +286,7 @@ svg1.append("text")
     .attr("id", "y-axis1")
     .call(y_grid_lines()
       .ticks(5)
-      // .tickFormat(d3.format("$.0s"))
+      .tickFormat(d3.format("$.2s"))
       .tickSize(-width)
       );
 
@@ -364,8 +364,8 @@ svg2.append("text")
   svg2.append("g")
       .attr("id","y-axis2")
       .call(y_grid_lines()
-      // .tickFormat(d3.format("$.0s"))
       .ticks(5)
+      .tickFormat(d3.format("$.2s"))
       .tickSize(-width)
       );
 
@@ -466,7 +466,7 @@ var svg1 = d3.select("#one").transition();
     .duration(750)
     .call(y_grid_lines()
       .ticks(5)
-      .tickFormat(d3.format("$.0s"))
+      .tickFormat(d3.format("$.2s"))
       .tickSize(-width)
       );
 
@@ -530,7 +530,7 @@ var svg2 = d3.select("#two").transition();
     .duration(750)
     .call(y_grid_lines()
       .ticks(5)
-      .tickFormat(d3.format("$.0s"))
+      .tickFormat(d3.format("$.2s"))
       .tickSize(-width)
       );
 
