@@ -133,7 +133,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVY_rVhbGwNNoh0HDLt5qo1N_s26sks5b-e80wA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
   getConsumption(data);
@@ -144,7 +144,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVY_rVhbGwNNoh0HDLt5qo1N_s26sks5b-e80wA%3D%3D", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
   updateConsumption(data);
