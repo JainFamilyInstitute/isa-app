@@ -285,7 +285,7 @@ svg2.append("text")
   data_vis = data_filtered[0];
 
   result = [];
-  for(i=22;i<66;i++){
+  for(i=22;i<44;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
@@ -311,7 +311,7 @@ svg2.append("text")
   data_vis2 = data_filtered2[0];
 
   result2 = [];
-  for(i=22;i<66;i++){
+  for(i=22;i<44;i++){
     key = i;
     value =parseFloat(data_vis2[i]);
     if(key == "Age") {
@@ -332,7 +332,7 @@ svg2.append("text")
   console.log(selected_max + ", " + loan_max + ", " + max);
 
   // Scale the range of the data
-  x.domain([d3.min(result, function(d) { return d.key; }), 43]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 44]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
@@ -567,7 +567,7 @@ var svg2 = d3.select("#two").transition();
   data_vis = data_filtered[0];
 
   result = [];
-  for(i=22;i<66;i++){
+  for(i=22;i<44;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
@@ -593,7 +593,7 @@ var svg2 = d3.select("#two").transition();
   data_vis2 = data_filtered2[0];
 
   result2 = [];
-  for(i=22;i<66;i++){
+  for(i=22;i<44;i++){
     key = i;
     value =parseFloat(data_vis2[i]);
     if(key == "Age") {
@@ -615,7 +615,7 @@ var svg2 = d3.select("#two").transition();
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  x.domain([d3.min(result, function(d) { return d.key; }), 43]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 44]);
  y.domain([0, max]);
 
   // Add the valueline path.
