@@ -101,17 +101,16 @@
 }
 
 .chart {
-	width:80%;
+	width:30%;
 	height:40vh;
 	margin:auto;
+  margin-left:3%;
+  display:inline-block;
 	background-color:;
 	margin-top:1%;
   margin-bottom:-8%;
 }
 
-#chart1 {
-  margin-top:10%;
-}
 
 .alert {
 	background-color: #E6E6E6;
@@ -143,28 +142,20 @@ html, body {
 	width:100%;
 }
 
-.assessment hr {
-  margin-top:-3%;
-  height:0.1em;
-  background-color:#ED574B;
-  border:#ED574B;
-}
-
-
 .assessment {
-	width:50%;
-	height:100vh;
+	width:auto;
+	height:auto;
 	margin:0%;
 	display:inline-block;
-	padding:2% 5% 2% 5%;
+	padding:0% 5% 2% 3%;
 }
 
 .results {
-  position:fixed;
+/*  position:fixed;*/
 	vertical-align:top;
 	margin:0%;
-	width:39%;
-	height:100vh;
+	width:100%;
+	height:50vh;
 	background-color:#F2F2F2;
 	display:inline-block;
 }
@@ -262,14 +253,20 @@ input[type=radio] {
 
 .sticker {
 	display:inline-block;
-	width:20%;
+	width:auto;
+  border-radius:0.5em;
 	margin-top:5%;
+  background-color:#F2F2F2;
+  padding:5%;
+
 }
 .sticker p {
 	font-family: 'Helvetica Neue';
 	font-size: 0.8em;
 	font-weight:600;
+  font-size:1.2em;
 	line-height:1em;
+  width:55%;
 }
 
 #premium {
@@ -278,12 +275,21 @@ input[type=radio] {
 	font-weight:600;
 	color: black;
 	line-height:0.5em;
+  display:inline-block;
+  margin-left:5%;
+  margin-right:2%;
 }
 
 .insights {
-  margin-top:8%;
+  width:25%;
+  display:inline-block;
+  vertical-align:bottom;
+  padding-bottom:2%;
 }
 
+.insights p {
+  display:inline-block;
+}
 .insights hr {
   height:0.05em;
   background-color:black;
@@ -291,13 +297,11 @@ input[type=radio] {
 }
 
 .insights .info {
-	margin-top:-10%;
-	margin-left:-2%;
+  text-align:left;
 }
 .learn-more {
 	display:inline-block;
-	width:60%;
-	margin-left:10%;
+	width:100%;
 }
 
 .learn-more h1 {
@@ -305,6 +309,12 @@ input[type=radio] {
 	font-weight:600;
 	color:black;
 	font-size:1em;
+  margin-bottom:0%;
+}
+
+.learn-more p {
+  margin:0%;
+  font-family: 'CMU Serif';
 }
 
 .agent .button {
@@ -313,20 +323,18 @@ input[type=radio] {
   font-weight:600;
   color:black;
   font-size:0.7em;
-  margin:2%;
+  margin:1%;
   background-color: #CCCC;
   color:#666666;
-  padding:2% 5%;
+  padding:0.5% 1%;
   cursor:pointer;
   transition:0.5s all ease-in-out;
 }
 
-
 .agent {
-  margin-top:10%;
-  padding-left:10%;
-  margin-bottom:8%;
+  padding:1% 0% 0% 2%;
 }
+
 .chart-title {
   font-family: 'CMU Serif';
   font-size:0.8em;

@@ -136,6 +136,7 @@ function loadData() {
   d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
+  getPayments(data);
   getConsumption(data);
 
   });
@@ -147,6 +148,7 @@ function update() {
   d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
+  updatePayments(data);
   updateConsumption(data);
 
   });
@@ -182,8 +184,7 @@ var svg1 = d3.select("#one")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.select('#label1').html("Lifetime "+ "<em1>Income </em1>" + "and " + "<em2>Payments</em2>");
-d3.select('#label2').html("Lifetime "+ "<em3>Consumption</em1>");
+d3.select('#label1').html("Lifetime "+ "<em1>Income </em1>");
 
 svg1.append("text")
         .attr("x", width + 25)             
@@ -219,39 +220,6 @@ svg1.append("text")
     }
   }
 
-    // First fetch: Payments Data
-  data2 = data.filter(function(d) { 
-          return (d.quartile == quartile) &
-          (d.variable == 'Payment') &
-          (d.amount == amount) &
-          (d.type == type) &
-          (d.risk == risk) }); 
-
-  // create visualizable array with only ages and amounts for selected series
-  data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
-  data_vis2 = data_filtered2[0];
-
-  result2 = [];
-  for(i=22;i<66;i++){
-    key = i;
-    value =parseFloat(data_vis2[i]);
-    if(key == "Age") {
-      // do nothing
-    } else {
-      result2.push({
-            key: key,
-            value: value
-        });
-    }
-  }
-
-  console.log(result2);
-
-  income_max = d3.max(result, function(d) { return d.value; });
-  payment_max = d3.max(result2, function(d) { return d.value; });
-  max = Math.max(income_max, payment_max);
-  console.log(income_max + ", " + payment_max + ", " + max);
-
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   x.domain([d3.min(result, function(d) { return d.key; }), 65]);
@@ -263,13 +231,6 @@ svg1.append("text")
       .attr("class", "line")
       .attr("id", "line1")
       .attr("d", valueline);
-
-  svg1.append("path")
-    .data([result2])
-    .attr("class", "line")
-    .attr("id", "line2")
-    .style("stroke", "blue")
-    .attr("d", valueline);
 
   // Add the X Axis
   svg1.append("g")
@@ -292,10 +253,7 @@ svg1.append("text")
 
 }
 
-
-function getConsumption(data) {
-
-variable= 'Consumption';
+function getPayments(data) {
 
 var svg2 = d3.select("#two")
     .attr("width", width + margin.left + margin.right)
@@ -304,6 +262,8 @@ var svg2 = d3.select("#two")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+d3.select('#label2').html("Lifetime "+ "<em2>Payments</em2>");
+
 svg2.append("text")
         .attr("x", width + 25)             
         .attr("y", height + 15)
@@ -311,6 +271,128 @@ svg2.append("text")
         .style("font-size", "0.8em") 
         .style("font-style", "italic")  
         .text("Age");
+
+  // First fetch: Income Data
+  data1 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == type) &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered = data1.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis = data_filtered[0];
+
+  result = [];
+  for(i=22;i<66;i++){
+    key = i;
+    value =parseFloat(data_vis[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+    // First fetch: Payments Data
+  data2 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'debt') &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis2 = data_filtered2[0];
+
+  result2 = [];
+  for(i=22;i<66;i++){
+    key = i;
+    value =parseFloat(data_vis2[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result2.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  console.log(result2);
+
+  selected_max = d3.max(result, function(d) { return d.value; });
+  loan_max = d3.max(result2, function(d) { return d.value; });
+  max = Math.max(selected_max, loan_max);
+  console.log(selected_max + ", " + loan_max + ", " + max);
+
+  // Scale the range of the data
+  // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+  y.domain([0, d3.max(result, function(d) { return d.value; })]);
+
+  // Add the valueline path.
+  svg2.append("path")
+      .data([result])
+      .attr("class", "line")
+      .attr("id", "line2")
+      .style("stroke", "blue")
+      .attr("d", valueline);
+
+  svg2.append("path")
+    .data([result2])
+    .attr("class", "line")
+    .attr("id", "line3")
+    .style("stroke", "grey")
+    .attr("d", valueline);
+
+  // Add the X Axis
+  svg2.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+    function y_grid_lines() {
+    return d3.axisLeft(y)
+  }
+
+  svg2.append("g")
+    .attr("class", "grid")
+    .attr("id", "y-axis2")
+    .call(y_grid_lines()
+      .ticks(5)
+      .tickFormat(d3.format("$.2s"))
+      .tickSize(-width)
+      );
+
+}
+
+
+function getConsumption(data) {
+
+variable= 'Consumption';
+
+var svg3 = d3.select("#three")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+svg3.append("text")
+        .attr("x", width + 25)             
+        .attr("y", height + 15)
+        .attr("class", "x-label")  
+        .style("font-size", "0.8em") 
+        .style("font-style", "italic")  
+        .text("Age");
+
+d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
 
  // First fetch: Consumption Data
   data = data.filter(function(d) { 
@@ -343,16 +425,16 @@ svg2.append("text")
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
-  svg2.append("path")
+  svg3.append("path")
       .data([result])
       .attr("class", "line")
-      .attr("id", "line2")
+      .attr("id", "line4")
       .style("stroke", "black")
       .attr("d", valueline);
 
   // Add the X Axis
-  svg2.append("g")
-      .attr("id","x-axis2")
+  svg3.append("g")
+      .attr("id","x-axis3")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
@@ -361,8 +443,8 @@ svg2.append("text")
     return d3.axisLeft(y)
   }
 
-  svg2.append("g")
-      .attr("id","y-axis2")
+  svg3.append("g")
+      .attr("id","y-axis3")
       .call(y_grid_lines()
       .ticks(5)
       .tickFormat(d3.format("$.2s"))
@@ -448,10 +530,6 @@ var svg1 = d3.select("#one").transition();
       .duration(750)
       .attr("d", valueline(result));
 
-  svg1.select("#line2")
-    .duration(750)
-    .attr("d", valueline(result2));
-
   // Add the X Axis
   svg1.select("#x-axis1")
       .duration(750)
@@ -472,12 +550,109 @@ var svg1 = d3.select("#one").transition();
 
 }
 
+function updatePayments(data) {
+
+var svg2 = d3.select("#two").transition();
+
+  // Update fetch: Income Data
+   data1 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == type) &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered = data1.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis = data_filtered[0];
+
+  result = [];
+  for(i=22;i<66;i++){
+    key = i;
+    value =parseFloat(data_vis[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  // Update fetch: Payments Data
+  data2 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'debt') &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis2 = data_filtered2[0];
+
+  result2 = [];
+  for(i=22;i<66;i++){
+    key = i;
+    value =parseFloat(data_vis2[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result2.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  console.log(result2);
+
+  income_max = d3.max(result, function(d) { return d.value; });
+  payment_max = d3.max(result2, function(d) { return d.value; });
+  max = Math.max(income_max, payment_max);
+  console.log(income_max + ", " + payment_max + ", " + max);
+
+  // Scale the range of the data
+  // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+ y.domain([0, max]);
+
+  // Add the valueline path.
+  svg2.select("#line2")
+      .duration(750)
+      .attr("d", valueline(result));
+
+  svg2.select("#line3")
+    .duration(750)
+    .attr("d", valueline(result2));
+
+  // Add the X Axis
+  svg2.select("#x-axis2")
+      .duration(750)
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+    function y_grid_lines() {
+    return d3.axisLeft(y)
+  }
+
+  svg2.select("#y-axis2")
+    .duration(750)
+    .call(y_grid_lines()
+      .ticks(5)
+      .tickFormat(d3.format("$.2s"))
+      .tickSize(-width)
+      );
+
+}
+
 
 function updateConsumption(data) {
 
 variable= 'Consumption';
 
-var svg2 = d3.select("#two").transition();
+var svg3 = d3.select("#three").transition();
 
   // filter by selection
   data = data.filter(function(d) { 
@@ -512,12 +687,12 @@ var svg2 = d3.select("#two").transition();
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
-  svg2.select("#line2")
+  svg3.select("#line4")
       .duration(750)
       .attr("d", valueline(result));
 
   // Add the X Axis
-  svg2.select("#x-axis1")
+  svg3.select("#x-axis3")
       .duration(750)
       .call(d3.axisBottom(x));
 
@@ -526,7 +701,7 @@ var svg2 = d3.select("#two").transition();
     return d3.axisLeft(y)
   }
 
-  svg2.select("#y-axis2")
+  svg3.select("#y-axis3")
     .duration(750)
     .call(y_grid_lines()
       .ticks(5)
