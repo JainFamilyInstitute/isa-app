@@ -262,7 +262,7 @@ var svg2 = d3.select("#two")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.select('#label2').html("Lifetime "+ "<em2>Payments</em2>");
+d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>" + " vs. <em>Loan Payments</em>" );
 
 svg2.append("text")
         .attr("x", width + 25)             
@@ -553,6 +553,12 @@ var svg1 = d3.select("#one").transition();
 function updatePayments(data) {
 
 var svg2 = d3.select("#two").transition();
+if(type != 'debt'){
+  d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>" + " vs. <em>Loan Payments</em>" );
+} else {
+  d3.select('#label2').html("Lifetime <em2> Loan Payments</em2>");
+}
+
 
   // Update fetch: Income Data
    data1 = data.filter(function(d) { 

@@ -351,6 +351,10 @@ input[type=radio] {
   fill:#666666;
 }
 
+em {
+  font-weight:700;
+}
+
 em1 {
   font-weight:600;
   color:#ED574B;
