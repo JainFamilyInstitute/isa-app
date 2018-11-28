@@ -140,14 +140,20 @@ html, body {
 	left:0;
 	margin:0;
 	width:100%;
+  overflow:hidden;
 }
 
 .assessment {
-	width:auto;
+	width:100%;
 	height:auto;
 	margin:0%;
 	display:inline-block;
-	padding:0% 5% 2% 3%;
+	padding:0% 5% 0% 3%;
+}
+
+.selection {
+  width:55%;
+  display:inline-block;
 }
 
 .results {
@@ -156,7 +162,7 @@ html, body {
 	margin:0%;
 	width:100%;
 	height:50vh;
-	background-color:#F2F2F2;
+	box-shadow: 0.2em 0.2em 1em #CCC;
 	display:inline-block;
 }
 
@@ -164,7 +170,8 @@ html, body {
 	color: #ED574B;
 	font-family: 'CMU Serif';
 	font-weight:100;
-	font-size:2em;
+	font-size:1.8em;
+  letter-spacing:0.02em;
 }
 
 .assessment p {
@@ -232,7 +239,7 @@ input[type=radio] {
          width: 18px;
          height: 18px;
          top: 0;
-         left: -8%;
+         left: -10%;
          border: 0.05em solid #666666;
          background-color: white;
 }
@@ -246,7 +253,7 @@ input[type=radio] {
          width: 18px;
          height: 18px;
          top: 0;
-         left: -8%;
+         left: -10%;
          border: 0.05em solid #ED574B;
          background-color: #ED574B;
 }
@@ -255,9 +262,9 @@ input[type=radio] {
 	display:inline-block;
 	width:auto;
   border-radius:0.5em;
-	margin-top:5%;
-  background-color:#F2F2F2;
-  padding:5%;
+  padding:10%;
+  margin-top:-10%;
+  box-shadow: 0.2em 0.2em 1em #CCC;
 
 }
 .sticker p {
@@ -273,7 +280,7 @@ input[type=radio] {
 	font-family: 'Helvetica Neue';
 	font-size:3em;
 	font-weight:600;
-	color: black;
+	color: #ED574B;
 	line-height:0.5em;
   display:inline-block;
   margin-left:5%;
@@ -281,10 +288,10 @@ input[type=radio] {
 }
 
 .insights {
-  width:25%;
+  width:30%;
   display:inline-block;
-  vertical-align:bottom;
-  padding-bottom:2%;
+  vertical-align:top;
+  padding-bottom:3%;
 }
 
 .insights p {
@@ -300,7 +307,8 @@ input[type=radio] {
   text-align:left;
 }
 .learn-more {
-	display:inline-block;
+	display:block;
+  margin-top:5%;
 	width:100%;
 }
 
