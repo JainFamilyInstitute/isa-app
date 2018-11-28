@@ -332,8 +332,7 @@ svg2.append("text")
   console.log(selected_max + ", " + loan_max + ", " + max);
 
   // Scale the range of the data
-  // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 43]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
@@ -616,7 +615,7 @@ var svg2 = d3.select("#two").transition();
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+  x.domain([d3.min(result, function(d) { return d.key; }), 43]);
  y.domain([0, max]);
 
   // Add the valueline path.
