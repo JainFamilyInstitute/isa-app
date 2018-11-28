@@ -337,12 +337,6 @@ svg2.append("text")
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
-  svg2.append("path")
-      .data([result])
-      .attr("class", "line")
-      .attr("id", "line2")
-      .style("stroke", "blue")
-      .attr("d", valueline);
 
   svg2.append("path")
     .data([result2])
@@ -350,6 +344,13 @@ svg2.append("text")
     .attr("id", "line3")
     .style("stroke", "grey")
     .attr("d", valueline);
+
+  svg2.append("path")
+      .data([result])
+      .attr("class", "line")
+      .attr("id", "line2")
+      .style("stroke", "blue")
+      .attr("d", valueline);
 
   // Add the X Axis
   svg2.append("g")
@@ -619,13 +620,14 @@ var svg2 = d3.select("#two").transition();
  y.domain([0, max]);
 
   // Add the valueline path.
-  svg2.select("#line2")
-      .duration(750)
-      .attr("d", valueline(result));
 
   svg2.select("#line3")
     .duration(750)
     .attr("d", valueline(result2));
+
+  svg2.select("#line2")
+      .duration(750)
+      .attr("d", valueline(result));
 
   // Add the X Axis
   svg2.select("#x-axis2")

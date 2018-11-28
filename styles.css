@@ -232,7 +232,7 @@ input[type=radio] {
          width: 18px;
          height: 18px;
          top: 0;
-         left: -5%;
+         left: -8%;
          border: 0.05em solid #666666;
          background-color: white;
 }
@@ -246,7 +246,7 @@ input[type=radio] {
          width: 18px;
          height: 18px;
          top: 0;
-         left: -5%;
+         left: -8%;
          border: 0.05em solid #ED574B;
          background-color: #ED574B;
 }
