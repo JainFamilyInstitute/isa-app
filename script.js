@@ -100,8 +100,6 @@ function status() {
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
       alerts[0].style.width="100%";
-      alerts[1].style.display="inline-block";
-      alerts[1].style.width="100%";
       svg1.style.opacity="none";
       svg2.style.opacity="none";
       message1.innerHTML="Please enter your demographics";
@@ -111,7 +109,6 @@ function status() {
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
-      alerts[1].style.display="none";
       svg1.style.display="inline-block";
       svg2.style.display="inline-block";
       label1.style.display="block";
