@@ -69,7 +69,7 @@ for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     document.querySelector('input[name="grad"][value="0"]').checked = false;
     status();
-    console.log(grad + quartile + amount + type + risk);
+    // console.log(grad + quartile + amount + type + risk);
     update();
   }
 }
@@ -96,7 +96,7 @@ function status() {
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
     label1 = document.querySelector('#label1');
     label2 = document.querySelector('#label2');
-    console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
+    // console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
       alerts[0].style.width="100%";
@@ -130,7 +130,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
+  d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
   getPayments(data);
@@ -142,7 +142,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVUZscWDxWPPkUt6CEr29v0FtIsU4ks5cBrfpwA%3D%3D", function(error, data) {
+  d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
   updatePayments(data);
@@ -321,12 +321,12 @@ svg2.append("text")
     }
   }
 
-  console.log(result2);
+  // console.log(result2);
 
   selected_max = d3.max(result, function(d) { return d.value; });
   loan_max = d3.max(result2, function(d) { return d.value; });
   max = Math.max(selected_max, loan_max);
-  console.log(selected_max + ", " + loan_max + ", " + max);
+  // console.log(selected_max + ", " + loan_max + ", " + max);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), 44]);
@@ -416,6 +416,7 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
         });
     }
   }
+  console.log(result);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
@@ -510,12 +511,12 @@ var svg1 = d3.select("#one").transition();
     }
   }
 
-  console.log(result2);
+  // console.log(result2);
 
   income_max = d3.max(result, function(d) { return d.value; });
   payment_max = d3.max(result2, function(d) { return d.value; });
   max = Math.max(income_max, payment_max);
-  console.log(income_max + ", " + payment_max + ", " + max);
+  // console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
@@ -609,12 +610,12 @@ if(type != 'debt'){
     }
   }
 
-  console.log(result2);
+  // console.log(result2);
 
   income_max = d3.max(result, function(d) { return d.value; });
   payment_max = d3.max(result2, function(d) { return d.value; });
   max = Math.max(income_max, payment_max);
-  console.log(income_max + ", " + payment_max + ", " + max);
+  // console.log(income_max + ", " + payment_max + ", " + max);
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
