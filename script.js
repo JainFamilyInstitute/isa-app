@@ -302,7 +302,7 @@ svg2.append("text")
     }
   }
 
-    // First fetch: Payments Data
+    // Payments Data: Loan
   data2 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Payment') &
@@ -328,11 +328,63 @@ svg2.append("text")
     }
   }
 
-  // console.log(result2);
+  // Payments Data: IDR
+  data3 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'IDR') &
+          (d.risk == risk) }); 
 
-  income_max = d3.max(result, function(d) { return d.value; });
-  payment_max = d3.max(result2, function(d) { return d.value; });
-  max = Math.max(income_max, payment_max);
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered3 = data3.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis3 = data_filtered3[0];
+
+  result3 = [];
+  for(i=22;i<44;i++){
+    key = i;
+    value =parseFloat(data_vis3[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result3.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  // Payments Data: ISA
+  data4 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'ISA-Purdue') &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered4 = data4.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis4 = data_filtered4[0];
+
+  result4 = [];
+  for(i=22;i<44;i++){
+    key = i;
+    value =parseFloat(data_vis4[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result4.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  selected_max = d3.max(result, function(d) { return d.value; });
+  loan_max = d3.max(result2, function(d) { return d.value; });
+  IDR_max = d3.max(result3, function(d) {return d.value;});
+  ISA_max = d3.max(result4, function(d) {return d.value;});
+  max = Math.max(selected_max, loan_max, IDR_max, ISA_max);
   console.log(max);
 
   // Scale the range of the data
@@ -340,6 +392,20 @@ svg2.append("text")
   y.domain([0, max]);
 
   // Add the valueline path.
+
+   svg2.append("path")
+    .data([result3])
+    .attr("class", "line")
+    .attr("id", "line3_5_1")
+    .style("stroke", "grey")
+    .attr("d", valueline);
+
+  svg2.append("path")
+    .data([result3])
+    .attr("class", "line")
+    .attr("id", "line3_5")
+    .style("stroke", "grey")
+    .attr("d", valueline);
 
   svg2.append("path")
     .data([result2])
@@ -558,7 +624,7 @@ if(type != 'debt'){
     }
   }
 
-  // Update fetch: Payments Data
+  // Update Payments Data: Loans
   data2 = data.filter(function(d) { 
           return (d.quartile == quartile) &
           (d.variable == 'Payment') &
@@ -584,19 +650,79 @@ if(type != 'debt'){
     }
   }
 
-  // console.log(result2);
+  // Update Payments Data: IDR
+  data3 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'IDR') &
+          (d.risk == risk) }); 
 
-  income_max = d3.max(result, function(d) { return d.value; });
-  payment_max = d3.max(result2, function(d) { return d.value; });
-  max = Math.max(income_max, payment_max);
-  // console.log(income_max + ", " + payment_max + ", " + max);
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered3 = data3.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis3 = data_filtered3[0];
+
+  result3 = [];
+  for(i=22;i<44;i++){
+    key = i;
+    value =parseFloat(data_vis3[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result3.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  // Payments Data: ISA
+  data4 = data.filter(function(d) { 
+          return (d.quartile == quartile) &
+          (d.variable == 'Payment') &
+          (d.amount == amount) &
+          (d.type == 'ISA-Purdue') &
+          (d.risk == risk) }); 
+
+  // create visualizable array with only ages and amounts for selected series
+  data_filtered4 = data4.map(({ quartile,amount,risk,type,variable, ...item }) => item);
+  data_vis4 = data_filtered4[0];
+
+  result4 = [];
+  for(i=22;i<44;i++){
+    key = i;
+    value =parseFloat(data_vis4[i]);
+    if(key == "Age") {
+      // do nothing
+    } else {
+      result4.push({
+            key: key,
+            value: value
+        });
+    }
+  }
+
+  selected_max = d3.max(result, function(d) { return d.value; });
+  loan_max = d3.max(result2, function(d) { return d.value; });
+  IDR_max = d3.max(result3, function(d) {return d.value;});
+  ISA_max = d3.max(result4, function(d) {return d.value;});
+  max = Math.max(selected_max, loan_max, IDR_max, ISA_max);
+  console.log(max);
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   x.domain([d3.min(result, function(d) { return d.key; }), 44]);
- y.domain([0, max]);
+  y.domain([0, max]);
 
   // Add the valueline path.
+
+    svg2.select("#line3_5_1")
+    .duration(750)
+    .attr("d", valueline(result4));
+
+  svg2.select("#line3_5")
+    .duration(750)
+    .attr("d", valueline(result3));
 
   svg2.select("#line3")
     .duration(750)
