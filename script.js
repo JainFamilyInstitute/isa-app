@@ -129,7 +129,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("data/data_vis2.csv", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVZKY1TUkAPcxD59CAb44xin-LyX-ks5cG98ZwA%3D%3D", function(error, data) {
   //   if (error) throw error;
     if(amount != 0){
     getIncome(data);
@@ -145,7 +145,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("data/data_vis2.csv", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVZKY1TUkAPcxD59CAb44xin-LyX-ks5cG98ZwA%3D%3D", function(error, data) {
   //   if (error) throw error;
     if(amount != 0){
       updateIncome(data);
@@ -205,8 +205,6 @@ svg1.append("text")
         .attr("x", width + 25)             
         .attr("y", height + 15)
         .attr("class", "x-label")  
-        .style("font-size", "0.8em") 
-        .style("font-style", "italic")  
         .text("Age");
  //Define the gradient below the line chart
   var areaGradient = svg1.append('defs')
@@ -315,8 +313,6 @@ svg2.append("text")
         .attr("x", width + 25)             
         .attr("y", height + 15)
         .attr("class", "x-label")  
-        .style("font-size", "0.8em") 
-        .style("font-style", "italic")  
         .text("Age");
 
   // First fetch: Income Data
@@ -501,8 +497,6 @@ svg3.append("text")
         .attr("x", width + 25)             
         .attr("y", height + 15)
         .attr("class", "x-label")  
-        .style("font-size", "0.8em") 
-        .style("font-style", "italic")  
         .text("Age");
 
  //Define the gradient below the line chart

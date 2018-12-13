@@ -146,6 +146,7 @@ html, body {
 	margin:0;
 	width:100%;
   overflow:hidden;
+  background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
 }
 
 .assessment {
@@ -161,7 +162,19 @@ html, body {
   display:inline-block;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity:0.8;
+    margin-top:4%;
+  }
+  100% {
+    opacity:1;
+    margin-top:2%;
+  }
+}
+
 .results {
+  animation:fadeIn 1s ease-in-out;
   background-color:#081451;
 	vertical-align:top;
 	margin:2%;
@@ -264,6 +277,7 @@ input[type=radio] {
 }
 
 .sticker {
+  background-color:white;
 	display:inline-block;
 	width:auto;
   border-radius:0.5em;
@@ -340,7 +354,7 @@ input[type=radio] {
   color:black;
   font-size:0.7em;
   margin:1%;
-  background-color: #CCCC;
+  background-color: #CCCCCC;
   color:#666666;
   padding:0.5% 1%;
   cursor:pointer;
@@ -366,7 +380,12 @@ input[type=radio] {
 }
 
 .x-label {
-  fill:#666666;
+  fill:#CCCCCC;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-style:normal;
+  font-weight:600;
+  text-transform:uppercase;
+  font-size:0.6em;
 }
 
 em {
