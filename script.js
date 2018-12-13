@@ -49,7 +49,7 @@ for(i=0;i<amount_checked.length;i++){
 for(i=0;i<risk_checked.length;i++){
   risk=risk_checked[i].value;
 }
-type="ISA";
+type="ISA-Purdue";
 
 var radios = document.querySelectorAll('input');
 var alerts = document.querySelectorAll('.alert');
@@ -58,7 +58,7 @@ var message2 = document.querySelector('#message2');
 var svg1 = document.querySelector('#one');
 var svg2 = document.querySelector('#two');
 var buttons = document.querySelectorAll('.button');
-isa_button = document.getElementById('ISA');
+isa_button = document.getElementById('ISA-Purdue');
 isa_button.style.backgroundColor="#ED574B";
 isa_button.style.color="white";
 
@@ -130,7 +130,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("data/data_vis2.csv", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVfgM5pjqzMPp6FDFoYCzxFYEXZ0Iks5cGwzdwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   getIncome(data);
   getPayments(data);
@@ -142,7 +142,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("data/data_vis2.csv", function(error, data) {
+  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVfgM5pjqzMPp6FDFoYCzxFYEXZ0Iks5cGwzdwA%3D%3D", function(error, data) {
   //   if (error) throw error;
   updateIncome(data);
   updatePayments(data);
@@ -323,14 +323,14 @@ svg2.append("text")
 
   // console.log(result2);
 
-  selected_max = d3.max(result, function(d) { return d.value; });
-  loan_max = d3.max(result2, function(d) { return d.value; });
-  max = Math.max(selected_max, loan_max);
-  // console.log(selected_max + ", " + loan_max + ", " + max);
+  income_max = d3.max(result, function(d) { return d.value; });
+  payment_max = d3.max(result2, function(d) { return d.value; });
+  max = Math.max(income_max, payment_max);
+  console.log(max);
 
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), 44]);
-  y.domain([0, d3.max(result, function(d) { return d.value; })]);
+  y.domain([0, max]);
 
   // Add the valueline path.
 
@@ -404,7 +404,7 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   data_vis = data_filtered[0];
 
   result = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
