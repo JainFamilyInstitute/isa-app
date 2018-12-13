@@ -69,7 +69,6 @@ for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     document.querySelector('input[name="grad"][value="0"]').checked = false;
     status();
-    // console.log(grad + quartile + amount + type + risk);
     update();
   }
 }
@@ -132,10 +131,14 @@ function status() {
 function loadData() {
   d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVfgM5pjqzMPp6FDFoYCzxFYEXZ0Iks5cGwzdwA%3D%3D", function(error, data) {
   //   if (error) throw error;
-  getIncome(data);
-  getPayments(data);
-  getConsumption(data);
-
+    if(amount != 0){
+    getIncome(data);
+    getPayments(data);
+    getConsumption(data);
+    } else {
+      getIncome(data);
+    getConsumption(data);
+    }
   });
 }
 
@@ -144,10 +147,14 @@ loadData();
 function update() {
   d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVfgM5pjqzMPp6FDFoYCzxFYEXZ0Iks5cGwzdwA%3D%3D", function(error, data) {
   //   if (error) throw error;
-  updateIncome(data);
-  updatePayments(data);
-  updateConsumption(data);
-
+    if(amount != 0){
+      updateIncome(data);
+      updatePayments(data);
+      updateConsumption(data);
+    } else {
+      updateIncome(data);
+      updateConsumption(data);
+    }
   });
 }
 
@@ -485,43 +492,10 @@ var svg1 = d3.select("#one").transition();
     }
   }
 
-  // Update fetch: Payments Data
-  data2 = data.filter(function(d) { 
-          return (d.quartile == quartile) &
-          (d.variable == 'Payment') &
-          (d.amount == amount) &
-          (d.type == type) &
-          (d.risk == risk) }); 
-
-  // create visualizable array with only ages and amounts for selected series
-  data_filtered2 = data2.map(({ quartile,amount,risk,type,variable, ...item }) => item);
-  data_vis2 = data_filtered2[0];
-
-  result2 = [];
-  for(i=22;i<66;i++){
-    key = i;
-    value =parseFloat(data_vis2[i]);
-    if(key == "Age") {
-      // do nothing
-    } else {
-      result2.push({
-            key: key,
-            value: value
-        });
-    }
-  }
-
-  // console.log(result2);
-
-  income_max = d3.max(result, function(d) { return d.value; });
-  payment_max = d3.max(result2, function(d) { return d.value; });
-  max = Math.max(income_max, payment_max);
-  // console.log(income_max + ", " + payment_max + ", " + max);
-
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   x.domain([d3.min(result, function(d) { return d.key; }), 65]);
- y.domain([0, d3.max(result, function(d) { return d.value; })]);
+  y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
   // Add the valueline path.
   svg1.select("#line1")
