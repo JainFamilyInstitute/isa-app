@@ -77,15 +77,20 @@
     stroke-width: 3;
     fill: none;
     z-index:100;
+    stroke-linecap:round;
+}
+
+.area {
+/*  fill:none;*/
 }
 
 .tick line {
-	stroke: #CCCCCC;
+	stroke: #383E63;
 	stroke-width:0.2;
 }
 
 .tick text {
-	fill: #666666;
+	fill: #999999;
 }
 
 .domain {
@@ -157,25 +162,25 @@ html, body {
 }
 
 .results {
-/*  position:fixed;*/
+  background-color:#081451;
 	vertical-align:top;
-	margin:0%;
-	width:100%;
-	height:50vh;
-	box-shadow: 0.2em 0.2em 1em #CCC;
+	margin:2%;
+	width:95%;
+	height:45vh;
+  border-radius:0.5em;
+	box-shadow: 1em 0.8em 2em #CCC;
 	display:inline-block;
 }
 
 .assessment h1 {
 	color: #ED574B;
-	font-family: 'CMU Serif';
-	font-weight:100;
-	font-size:1.8em;
-  letter-spacing:0.02em;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-weight:600;
+	font-size:1.7em;
 }
 
 .assessment p {
-	font-family: 'CMU Serif';
+	font-family: 'Helvetica Neue', sans-serif;
 	font-weight:100;
 	font-size:1em;
 	color:black;
@@ -199,7 +204,7 @@ html, body {
 .info {
 	display:inline-block;
 	background-color: #B3B3B3;
-	font-family:'CMU Serif';
+	font-family:'Helvetica Neue', sans-serif;
 	font-style:italic;
 	font-weight:700;
 	color:#F2F2F2;
@@ -322,7 +327,10 @@ input[type=radio] {
 
 .learn-more p {
   margin:0%;
-  font-family: 'CMU Serif';
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight:400;
+  font-size:0.8em;
+  letter-spacing:0.05em;
 }
 
 .agent .button {
@@ -337,6 +345,7 @@ input[type=radio] {
   padding:0.5% 1%;
   cursor:pointer;
   transition:0.5s all ease-in-out;
+  box-shadow: 1em 1em 2em #150031;
 }
 
 .agent {
@@ -344,15 +353,16 @@ input[type=radio] {
 }
 
 .chart-title {
-  font-family: 'CMU Serif';
-  font-size:0.8em;
-  font-style:italic;
+  font-family: 'Helvetica Neue', sans-serif;
+  text-transform:uppercase;
+  font-size:0.6em;
   line-height:0em;
-  font-weight:100;
+  font-weight:600;
   padding:0;
   margin-top:3%;
+  letter-spacing:0.05em;
   margin-bottom:-10%;
-  color:#666666;
+  color:white;
 }
 
 .x-label {
@@ -370,10 +380,10 @@ em1 {
 
 em2 {
   font-weight:600;
-  color:#0000FF;
+  color:#4873EB;
 }
 
 em3 {
   font-weight:600;
-  color:black;
+  color:#FBB03B;
 }

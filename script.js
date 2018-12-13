@@ -162,12 +162,23 @@ function update() {
  margin = {top: h/4, right: w/6, bottom: h/4, left: w/12},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
+ padding = {top: margin.top + 20, right: margin.right + 20, bottom: margin.bottom+20, left: margin.left},
 
 x = d3.scaleLinear()
   .rangeRound([0, width]);
 
 y = d3.scaleLinear()
   .rangeRound([height,0]);
+
+  //Initiate the area line function
+  var areaFunction = d3.area()
+  .x(function (d) {
+    return x(d.key);
+  })
+  .y0(height)
+  .y1(function (d) {
+    return y(d.value);
+  });
 
 valueline = d3.line()
     .x(function(d) { return x(d.key); })
@@ -197,6 +208,24 @@ svg1.append("text")
         .style("font-size", "0.8em") 
         .style("font-style", "italic")  
         .text("Age");
+ //Define the gradient below the line chart
+  var areaGradient = svg1.append('defs')
+  .append("linearGradient")
+  .attr('id', 'areaGradient')
+  .attr("x1", "0%").attr("y1", "0%")
+  .attr("x2", "0%").attr("y2", "100%");
+
+  //Append the first stop - the color at the top
+  areaGradient.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#ED574B")
+    .attr("stop-opacity", 0.4);
+
+  //Append the second stop - white transparant almost at the end
+  areaGradient.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", 0);
 
   // First fetch: Income Data
   data1 = data.filter(function(d) { 
@@ -229,12 +258,26 @@ svg1.append("text")
   x.domain([d3.min(result, function(d) { return d.key; }), 65]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
+ // add the area
+  svg1.append("path")
+    .attr("class", "area")
+    .attr("id", "area1")
+    .style("fill", "url(#areaGradient)")
+    .attr("d", areaFunction(result));
+
   // Add the valueline path.
   svg1.append("path")
       .data([result])
       .attr("class", "line")
       .attr("id", "line1")
       .attr("d", valueline);
+
+    const focus = svg1.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
+  
+    focus.append('circle')
+      .attr('r', 4.5);
 
   // Add the X Axis
   svg1.append("g")
@@ -266,7 +309,7 @@ var svg2 = d3.select("#two")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>" + " vs. <em>Loan Payments</em>" );
+d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>" );
 
 svg2.append("text")
         .attr("x", width + 25)             
@@ -394,31 +437,31 @@ svg2.append("text")
   // Add the valueline path.
 
    svg2.append("path")
-    .data([result3])
+    .data([result4])
     .attr("class", "line")
     .attr("id", "line3_5_1")
-    .style("stroke", "grey")
+    .style("stroke", "#40CFBF")
     .attr("d", valueline);
 
   svg2.append("path")
     .data([result3])
     .attr("class", "line")
     .attr("id", "line3_5")
-    .style("stroke", "grey")
+    .style("stroke", "#BDCCD4")
     .attr("d", valueline);
 
   svg2.append("path")
     .data([result2])
     .attr("class", "line")
     .attr("id", "line3")
-    .style("stroke", "grey")
+    .style("stroke", "#69C2FF")
     .attr("d", valueline);
 
   svg2.append("path")
       .data([result])
       .attr("class", "line")
       .attr("id", "line2")
-      .style("stroke", "blue")
+      .style("stroke", "#4873EB")
       .attr("d", valueline);
 
   // Add the X Axis
@@ -462,6 +505,25 @@ svg3.append("text")
         .style("font-style", "italic")  
         .text("Age");
 
+ //Define the gradient below the line chart
+  var areaGradient2 = svg3.append('defs')
+  .append("linearGradient")
+  .attr('id', 'areaGradient2')
+  .attr("x1", "0%").attr("y1", "0%")
+  .attr("x2", "0%").attr("y2", "100%");
+
+  //Append the first stop - the color at the top
+  areaGradient2.append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", "#FBB03B")
+    .attr("stop-opacity", 0.4);
+
+  //Append the second stop - white transparant almost at the end
+  areaGradient2.append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", "white")
+    .attr("stop-opacity", 0);
+
 d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
 
  // First fetch: Consumption Data
@@ -495,12 +557,19 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
+   // add the area
+  svg3.append("path")
+    .attr("class", "area")
+    .attr("id", "area2")
+    .style("fill", "url(#areaGradient2)")
+    .attr("d", areaFunction(result));
+
   // Add the valueline path.
   svg3.append("path")
       .data([result])
       .attr("class", "line")
       .attr("id", "line4")
-      .style("stroke", "black")
+      .style("stroke", "#FBB03B")
       .attr("d", valueline);
 
   // Add the X Axis
@@ -563,6 +632,11 @@ var svg1 = d3.select("#one").transition();
   x.domain([d3.min(result, function(d) { return d.key; }), 65]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
+   // add the area
+  svg1.select("#area1")
+    .duration(750)
+    .attr("d", areaFunction(result));
+
   // Add the valueline path.
   svg1.select("#line1")
       .duration(750)
@@ -592,7 +666,7 @@ function updatePayments(data) {
 
 var svg2 = d3.select("#two").transition();
 if(type != 'debt'){
-  d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>" + " vs. <em>Loan Payments</em>" );
+  d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>");
 } else {
   d3.select('#label2').html("Lifetime <em2> Loan Payments</em2>");
 }
@@ -773,7 +847,7 @@ var svg3 = d3.select("#three").transition();
 
   // Update fetch: Consumption Data
   result = [];
-  for(i=22;i<101;i++){
+  for(i=22;i<66;i++){
     key = i;
     value =parseFloat(data_vis[i]);
     if(key == "Age") {
@@ -791,6 +865,11 @@ var svg3 = d3.select("#three").transition();
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
+
+     // add the area
+  svg3.select("#area2")
+    .duration(750)
+    .attr("d", areaFunction(result));
 
   svg3.select("#line4")
       .duration(750)
