@@ -129,7 +129,7 @@ function status() {
 
 
 function loadData() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVZKY1TUkAPcxD59CAb44xin-LyX-ks5cG98ZwA%3D%3D", function(error, data) {
+  d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
     if(amount != 0){
     getIncome(data);
@@ -145,7 +145,7 @@ function loadData() {
 loadData();
 
 function update() {
-  d3.csv("https://raw.githubusercontent.com/JainFamilyInstitute/isa-app/master/data/data_vis2.csv?token=AXiiVZKY1TUkAPcxD59CAb44xin-LyX-ks5cG98ZwA%3D%3D", function(error, data) {
+  d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
     if(amount != 0){
       updateIncome(data);
