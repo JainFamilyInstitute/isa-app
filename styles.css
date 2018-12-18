@@ -118,7 +118,8 @@
 
 
 .alert {
-	background-color: white;
+	background-color: #081451;
+  color:white;
 	height:80%;
   display:none;
 }

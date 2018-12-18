@@ -26,7 +26,7 @@ h = getInnerHeight(chart);
 // type: ['ISA' 'cg' 'ISA-Purdue' 'debt' 'IDR' 'hsg']
 // risk: [1 2 3 4]
 
-// default selection
+// Default Selection on Landing
 var grad_default = document.querySelector('input[name="grad"][value="1"]').checked = true;
   var quartile_default = document.querySelector('input[name="quartile"][value="1"]').checked = true;
   var amount_default = document.querySelector('input[name="amount"][value="70000"]').checked = true;
