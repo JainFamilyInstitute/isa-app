@@ -106,9 +106,9 @@ function status() {
       svg3.style.display="none";
       message1.innerHTML="Please enter your demographics";
       message2.innerHTML="Please enter your demographics";
-      label1.style.display="none";
-      label2.style.display="none";
-      label3.style.display="none";
+      label1.style.display="none!important";
+      label2.style.display="none!important";
+      label3.style.display="none!important";
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
