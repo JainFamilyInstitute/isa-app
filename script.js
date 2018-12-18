@@ -96,6 +96,7 @@ function status() {
     risk_checked = document.querySelectorAll('input[name="risk"]:checked');
     label1 = document.querySelector('#label1');
     label2 = document.querySelector('#label2');
+    label3 = document.querySelector('#label3');
     // console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
@@ -107,6 +108,7 @@ function status() {
       message2.innerHTML="Please enter your demographics";
       label1.style.display="none";
       label2.style.display="none";
+      label3.style.display="none";
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
@@ -115,6 +117,7 @@ function status() {
       svg3.style.display="inline-block";
       label1.style.display="block";
       label2.style.display="block";
+      label3.style.display="block";
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
