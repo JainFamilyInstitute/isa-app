@@ -118,7 +118,7 @@
 
 
 .alert {
-	background-color: #081451;
+	background-color: transparent;
   color:white;
 	height:80%;
   display:none;
