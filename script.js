@@ -57,6 +57,7 @@ var message1 = document.querySelector('#message1');
 var message2 = document.querySelector('#message2');
 var svg1 = document.querySelector('#one');
 var svg2 = document.querySelector('#two');
+var svg3 = document.querySelector('#three');
 var buttons = document.querySelectorAll('.button');
 isa_button = document.getElementById('ISA-Purdue');
 isa_button.style.backgroundColor="#ED574B";
@@ -99,8 +100,9 @@ function status() {
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
       alerts[0].style.width="100%";
-      svg1.style.opacity="none";
-      svg2.style.opacity="none";
+      svg1.style.display="none";
+      svg2.style.display="none";
+      svg3.style.display="none";
       message1.innerHTML="Please enter your demographics";
       message2.innerHTML="Please enter your demographics";
       label1.style.display="none";
@@ -110,6 +112,7 @@ function status() {
       alerts[0].style.display="none";
       svg1.style.display="inline-block";
       svg2.style.display="inline-block";
+      svg3.style.display="inline-block";
       label1.style.display="block";
       label2.style.display="block";
       for(i=0;i<grad_checked.length;i++){
