@@ -97,6 +97,9 @@ function status() {
     label1 = document.querySelector('#label1');
     label2 = document.querySelector('#label2');
     label3 = document.querySelector('#label3');
+    chart1 = document.querySelector('#chart1');
+    chart2 = document.querySelector('#chart2');
+    chart3 = document.querySelector('#chart3');
     // console.log(grad_checked.length + "," + quartile_checked.length + "," + amount_checked.length + "," + risk_checked.length)
     if(grad_checked.length == 0 | quartile_checked.length == 0 & amount_checked.length == 1 & risk_checked ==1){
       alerts[0].style.display="inline-block";
@@ -106,18 +109,18 @@ function status() {
       svg3.style.display="none";
       message1.innerHTML="Please enter your demographics";
       message2.innerHTML="Please enter your demographics";
-      label1.style.display="none!important";
-      label2.style.display="none!important";
-      label3.style.display="none!important";
+      chart1.style.display="none!important";
+      chart2.style.display="none!important";
+      chart3.style.display="none!important";
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
       svg1.style.display="inline-block";
       svg2.style.display="inline-block";
       svg3.style.display="inline-block";
-      label1.style.display="block";
-      label2.style.display="block";
-      label3.style.display="block";
+      chart1.style.display="block";
+      chart2.style.display="block";
+      chart3.style.display="block";
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
