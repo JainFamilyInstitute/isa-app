@@ -118,9 +118,9 @@ function status() {
       svg1.style.display="inline-block";
       svg2.style.display="inline-block";
       svg3.style.display="inline-block";
-      chart1.style.display="block";
-      chart2.style.display="block";
-      chart3.style.display="block";
+      chart1.style.display="inline-block";
+      chart2.style.display="inline-block";
+      chart3.style.display="inline-block";
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
