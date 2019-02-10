@@ -49,7 +49,7 @@ for(i=0;i<amount_checked.length;i++){
 for(i=0;i<risk_checked.length;i++){
   risk=risk_checked[i].value;
 }
-type="ISA-Purdue";
+type="debt";
 
 var radios = document.querySelectorAll('input');
 var alerts = document.querySelectorAll('.alert');
@@ -59,9 +59,9 @@ var svg1 = document.querySelector('#one');
 var svg2 = document.querySelector('#two');
 var svg3 = document.querySelector('#three');
 var buttons = document.querySelectorAll('.button');
-isa_button = document.getElementById('ISA-Purdue');
-isa_button.style.backgroundColor="#ED574B";
-isa_button.style.color="white";
+debt_button = document.getElementById('debt');
+debt_button.style.backgroundColor="#ED574B";
+debt_button.style.color="white";
 
 status();
 
@@ -75,18 +75,22 @@ for (i=0;i<radios.length;i++){
 }
 
 // return results based on agent (financial instrument) selection
-for (i=0;i<buttons.length;i++){
+function agentListen() {
+  for (i=0;i<buttons.length;i++){
   buttons[i].onclick= function() {
     type = this.id;
     for(i=0;i<buttons.length;i++){
       buttons[i].style.backgroundColor="#CCCC";
       buttons[i].style.color="#666666";
     }
-    this.style.backgroundColor="#ED574B";
-    this.style.color="white";
-    update();
+      this.style.backgroundColor="#ED574B";
+      this.style.color="white";
+      update();
+    }
   }
 }
+
+agentListen();
 
 // popup info lightbox
 infos = document.querySelectorAll('.info');
@@ -117,7 +121,49 @@ function listenClose(item){
     parent.style.display="none";
     shadow.style.display="none";
   }
+}
 
+// profile filter selection
+// Possible profiles --
+// Jamie: quartile=3, amount=30000, risk=3
+// Rob: quartile=4, amount=70000, risk=4
+profile1 = document.querySelector('#profile1');
+profile2 = document.querySelector('#profile2');
+profile1.onclick=function() {
+  document.querySelector('input[name="grad"][value="1"]').checked = true;
+  document.querySelector('input[name="quartile"][value="2"]').checked = true;
+  document.querySelector('input[name="amount"][value="30000"]').checked = true;
+  document.querySelector('input[name="risk"][value="3"]').checked = true;
+  status();
+  update();
+}
+profile2.onclick=function() {
+  document.querySelector('input[name="grad"][value="1"]').checked = true;
+  document.querySelector('input[name="quartile"][value="1"]').checked = true;
+  document.querySelector('input[name="amount"][value="70000"]').checked = true;
+  document.querySelector('input[name="risk"][value="4"]').checked = true;
+  status();
+  update();
+}
+
+function profileStatus() {
+  if (grad_checked.value == 1 && quartile_checked.value == 2 && amount_checked.value == 30000 && risk_checked.value == 3){
+    profile1.style.backgroundColor="#ED574B";
+    profile1.style.color="#white";
+    profile1.style.border="0.05em solid #ED574B";
+  } else if (grad_checked.value == 1 && quartile_checked.value == 1 && amount_checked.value == 70000 && risk_checked.value == 4){
+    profile2.style.backgroundColor="#ED574B";
+    profile2.style.color="white";
+    profile2.style.border="0.05em solid #ED574B";
+  } else {
+    // don't check any profile
+    profile1.style.backgroundColor="white";
+    profile1.style.color="#ED574B";
+    profile1.style.border="0.05em solid #ED574B";
+    profile2.style.backgroundColor="white";
+    profile2.style.color="#ED574B";
+    profile2.style.border="0.05em solid #ED574B";
+  }
 }
 
 // <-- Functions -->
@@ -165,6 +211,30 @@ function status() {
       for(i=0;i<risk_checked.length;i++){
         risk=risk_checked[i].value;
       }
+    }
+    // profile status
+      if (grad == 1 && quartile == 2 && amount == 30000 && risk== 3){
+      profile1.style.backgroundColor="#ED574B";
+      profile1.style.color="white";
+      profile1.style.border="0.05em solid #ED574B";
+      profile2.style.backgroundColor="white";
+      profile2.style.color="#ED574B";
+      profile2.style.border="0.05em solid #ED574B";
+    } else if (grad == 1 && quartile == 1 && amount == 70000 && risk == 4){
+      profile2.style.backgroundColor="#ED574B";
+      profile2.style.color="white";
+      profile2.style.border="0.05em solid #ED574B";
+      profile1.style.backgroundColor="white";
+      profile1.style.color="#ED574B";
+      profile1.style.border="0.05em solid #ED574B";
+    } else {
+      // don't check any profile
+      profile1.style.backgroundColor="white";
+      profile1.style.color="#ED574B";
+      profile1.style.border="0.05em solid #ED574B";
+      profile2.style.backgroundColor="white";
+      profile2.style.color="#ED574B";
+      profile2.style.border="0.05em solid #ED574B";
     }
 }
 

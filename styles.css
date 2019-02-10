@@ -290,32 +290,37 @@ input[type=radio] {
 }
 
 .sticker {
-  background-color:white;
+  position:fixed;
+  margin-top:20%;
+  right:0;
+  background-color:#ED574B;
 	display:inline-block;
 	width:auto;
   border-radius:0.5em;
-  padding:10%;
-  margin-top:-10%;
-  box-shadow: 0.2em 0.2em 1em #CCC;
+  padding:2%;
+  animation-delay:2s;
+  animation:fadeInOpacity 3s ease-in-out;
+/*  box-shadow: 0.2em 0.2em 1em #CCC;*/
 
 }
 .sticker p {
 	font-family: 'Helvetica Neue';
 	font-size: 0.8em;
 	font-weight:600;
-  font-size:1.2em;
+  font-size:0.8em;
 	line-height:1em;
   width:55%;
+  display:inline-block;
 }
 
 #premium {
 	font-family: 'Helvetica Neue';
-	font-size:3em;
+	font-size:1.8em;
 	font-weight:600;
-	color: #ED574B;
+	color: white;
 	line-height:0.5em;
   display:inline-block;
-  margin-left:5%;
+/*  margin-left:5%;*/
   margin-right:2%;
 }
 
@@ -328,6 +333,7 @@ input[type=radio] {
 
 .insights p {
   display:inline-block;
+  color:#666666;
 }
 .insights hr {
   height:0.05em;
@@ -487,4 +493,39 @@ close:hover {
   border:0.05em solid #ED574B;
   padding:2%;
   color: white;
+}
+
+/*profiles*/
+#profiles h1 {
+  font-family: 'Helvetica Neue';
+  font-weight:600;
+  font-size:1em;
+  color:#666666;
+  display:block;
+}
+.profile {
+  display:inline-block;
+  margin-right:10%;
+}
+.profile h2 {
+  font-family: 'Helvetica Neue';
+  font-size: 0.8em!important;
+  color: #ED574B;
+  font-size:1em;
+  display:inline-block;
+}
+.face {
+  display:block;
+  text-align:center;
+  background-color:white;
+  border:0.05em solid #ED574B;
+  color:#ED574B;
+  padding:1em;
+  cursor:pointer;
+  border-radius:0.5em;
+}
+.face:hover {
+  background-color:#ED574B;
+  border:0.05em solid #ED574B;
+  color:white;
 }
