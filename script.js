@@ -88,6 +88,38 @@ for (i=0;i<buttons.length;i++){
   }
 }
 
+// popup info lightbox
+infos = document.querySelectorAll('.info');
+lightbox = document.querySelector('.info-lightbox');
+shadow = document.querySelector('#shadow')
+console.log(infos);
+for(i=0;i<infos.length;i++){
+  infos[i].onclick=function() {
+    parent = this.parentNode;
+    grandparent = this.parentNode.parentNode;
+    shadow.style.display="block";
+    lightbox.style.display="inline-block";
+    listenClose('.info-lightbox');
+    title = this.previousElementSibling.innerHTML;
+    lightbox.querySelector('h1').innerHTML=title;
+    d3.csv('data/definitions.csv',function(error,data){
+      data= data.filter(function(d){return d.category == title})
+      lightbox.querySelector('p').innerHTML="";
+      lightbox.querySelector('p').innerHTML+=data[0]['definition'];
+    });
+  }
+}
+
+function listenClose(item){
+  parent = document.querySelector(item);
+  close =parent.querySelector('close');
+  close.onclick=function() {
+    parent.style.display="none";
+    shadow.style.display="none";
+  }
+
+}
+
 // <-- Functions -->
 function status() {
     grad_checked = document.querySelectorAll('input[name="grad"]:checked');

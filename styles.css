@@ -174,6 +174,15 @@ html, body {
   }
 }
 
+@keyframes fadeInOpacity {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
 .results {
   animation:fadeIn 1s ease-in-out;
   background-color:#081451;
@@ -226,8 +235,11 @@ html, body {
 	padding:0.3em 0.8em 0.3em 0.8em;
 	vertical-align:middle;
 	border-radius:50%;
+  cursor:pointer;
 }
-
+.info:hover {
+  background-color: #EC574B;
+}
 .option {
 	display:block;
 	margin-bottom:1%;
@@ -406,4 +418,73 @@ em2 {
 em3 {
   font-weight:600;
   color:#FBB03B;
+}
+
+/*info lightbox*/
+.info-lightbox {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight:600;
+  font-size:1em;
+  color:#666666;
+  display:none;
+  position:absolute;
+  z-index:100;
+  margin:auto;
+  width:80%;
+  height:80vh;
+  top:10%;
+  left:10%;
+  background-color:white;
+  animation:fadeInOpacity 0.5s ease-in-out;
+  border-radius:1em;
+  background-blend-mode: multiply;
+}
+close {
+  cursor:pointer;
+  font-family: 'Helvetica Neue', sans-serif;
+  padding:1%;
+  border:0.05em solid #ED574B;;
+  float:right;
+  margin:5%;
+  color:#ED574B;;
+}
+close:hover {
+  background-color:#ED574B;;
+  color:white;
+}
+#shadow {
+  display:none;
+  background-color:#ED574B;
+  opacity:0.95;
+  position:absolute;
+  width:100%;
+  height:100vh;
+  z-index:90;
+  animation:fadeInOpacity 0.5s ease-in-out;
+}
+.info-lightbox .content {
+  padding:5%;
+}
+.info-lightbox p {
+  font-weight:400;
+  line-height:2em;
+  letter-spacing:0.02em;
+  font-size:0.9em;
+}
+.info-lightbox a {
+  width:fit-content;
+  text-align:center;
+  display:block;
+  text-decoration: none;
+  border:0.05em solid #ED574B;
+  padding:2%;
+  color: #ED574B;
+  margin-top:3%;
+}
+.info-lightbox a:hover {
+  text-decoration-style: normal;
+  background-color:#ED574B;
+  border:0.05em solid #ED574B;
+  padding:2%;
+  color: white;
 }
