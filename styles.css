@@ -549,3 +549,30 @@ close:hover {
   border:0.05em solid #ED574B;
   color:white;
 }
+
+@media screen and (min-width:1920px){
+  @keyframes fadeIn {
+    0% {
+      opacity:0.8;
+      margin-top:10%;
+    }
+    100% {
+      opacity:1;
+      margin-top:8%;
+    }
+  }
+  .selection {
+    transform:scale(1.5);
+    transform-origin: 0 0;
+  }
+  #profiles {
+    transform:scale(1.5);
+    transform-origin: 0 0;
+    float:right;
+    width:50%;
+  }
+  .results {
+    margin-top:8%;
+  }
+
+}
