@@ -722,15 +722,34 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   }
   console.log(result);
 
+  consumption_sum = d3.sum(result, function(d){
+        return d.value;
+    });
+  cformat = d3.format("$.4s")
+  console.log(cformat(consumption_sum));
+
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
    // add the area
-  svg3.append("path")
+  cfill = svg3.append("path")
     .attr("class", "area")
     .attr("id", "area2")
     .style("fill", "url(#areaGradient2)")
+    .on("mouseover", function(d){ 
+      div.transition()    
+          .duration(200)    
+          .style("opacity", .9);    
+      div.html(cformat(consumption_sum))  
+          .style("left", (d3.event.pageX) + "px")   
+          .style("top", (d3.event.pageY) + "px");  
+    })
+    .on("mouseout", function(d){
+      div.transition()    
+          .duration(500)    
+          .style("opacity", 0)
+    })
     .attr("d", areaFunction(result));
 
   // Add the valueline path.
@@ -1029,6 +1048,12 @@ var svg3 = d3.select("#three").transition();
     }
   }
   console.log(result);
+
+  consumption_sum = d3.sum(result, function(d){
+        return d.value;
+    });
+  cformat = d3.format("$.4s")
+  console.log(cformat(consumption_sum));
 
 
   // Scale the range of the data

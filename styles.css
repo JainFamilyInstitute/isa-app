@@ -75,7 +75,9 @@
 #two .line{
   cursor:pointer;
 }
-
+#area2 {
+  cursor:pointer;
+}
 .line { 
     stroke: #ED574B;
     stroke-width: 3;
