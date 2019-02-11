@@ -297,16 +297,17 @@ input[type=radio] {
 
 .sticker {
   position:fixed;
-  margin-top:20%;
+  margin-top:10%;
   right:0;
-  background-color:#ED574B;
-	display:inline-block;
+  background-color:white;
+/*	display:inline-block;*/
 	width:auto;
   border-radius:0.5em;
   padding:2%;
   animation-delay:2s;
-  animation:fadeInOpacity 3s ease-in-out;
-/*  box-shadow: 0.2em 0.2em 1em #CCC;*/
+  animation:fadeInOpacity 1s ease-in-out;
+  box-shadow: 0.2em 0.2em 1em #CCC;
+  display:none;
 
 }
 .sticker p {
@@ -323,7 +324,7 @@ input[type=radio] {
 	font-family: 'Helvetica Neue';
 	font-size:1.8em;
 	font-weight:600;
-	color: white;
+	color: #ED574B;
 	line-height:0.5em;
   display:inline-block;
 /*  margin-left:5%;*/
@@ -419,9 +420,11 @@ div.tooltip {
     width: fit-content;     
     font: 12px sans-serif;    
     padding:0.5%;
-    background: lightsteelblue; 
-    border: 0px;      
+    color:white;
+    background: #ED574B; 
+    border: 0.05em dashed white;      
     pointer-events: none;
+    border-radius:1em;
 }
 
 em {
