@@ -72,6 +72,10 @@
 
 /*svgs*/
 
+#two .line{
+  cursor:pointer;
+}
+
 .line { 
     stroke: #ED574B;
     stroke-width: 3;
@@ -405,6 +409,17 @@ input[type=radio] {
   font-weight:600;
   text-transform:uppercase;
   font-size:0.6em;
+}
+
+div.tooltip { 
+    position: absolute;     
+    text-align: center;     
+    width: fit-content;     
+    font: 12px sans-serif;    
+    padding:0.5%;
+    background: lightsteelblue; 
+    border: 0px;      
+    pointer-events: none;
 }
 
 em {

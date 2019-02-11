@@ -299,6 +299,10 @@ valueline2 = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
+var div = d3.select("body").append("div") 
+    .attr("class", "tooltip")       
+    .style("opacity", 0);
+
 // get data functions
 
 function getIncome(data) {
@@ -543,25 +547,85 @@ svg2.append("text")
 
   // Add the valueline path.
 
-   svg2.append("path")
+var line3_5_1 = svg2.append("path")
     .data([result4])
     .attr("class", "line")
     .attr("id", "line3_5_1")
-    .style("stroke", "#40CFBF")
+    .style("stroke", "#213182")
+    .style("stroke-width", "3")
+    .on("mouseover", function(d) {
+    line3_5_1.transition()
+      .duration(200)
+      .style("stroke","#283a96")   
+      div.transition()    
+          .duration(200)    
+          .style("opacity", .9);    
+      div.html(data4[0]['type'])  
+          .style("left", (d3.event.pageX) + "px")   
+          .style("top", (d3.event.pageY - 28) + "px");  
+      })  
+    .on("mouseout", function(d) {   
+      line3_5_1.transition()
+        .duration(200)
+        .style("stroke", "#213182")
+      div.transition()    
+          .duration(500)    
+          .style("opacity", 0)
+      })  
     .attr("d", valueline);
 
-  svg2.append("path")
+  var line3_5 = svg2.append("path")
     .data([result3])
     .attr("class", "line")
     .attr("id", "line3_5")
-    .style("stroke", "#BDCCD4")
+    .style("stroke", "#213182")
+    .style("stroke-width", "3")
+    .on("mouseover", function(d) { 
+      line3_5.transition()
+      .duration(200)
+      .style("stroke","#283a96")     
+      div.transition()    
+          .duration(200)    
+          .style("opacity", .9);    
+      div.html(data3[0]['type'])  
+          .style("left", (d3.event.pageX) + "px")   
+          .style("top", (d3.event.pageY - 28) + "px");  
+      })  
+    .on("mouseout", function(d) { 
+      line3_5.transition()
+        .duration(200)
+        .style("stroke", "#213182")  
+      div.transition()    
+          .duration(500)    
+          .style("opacity", 0)
+      })  
     .attr("d", valueline);
 
-  svg2.append("path")
+  var line3 = svg2.append("path")
     .data([result2])
     .attr("class", "line")
     .attr("id", "line3")
-    .style("stroke", "#69C2FF")
+    .style("stroke", "#213182")
+    .style("stroke-width", "3")
+    .on("mouseover", function(d) { 
+      line3.transition()
+        .duration(200)
+        .style("stroke","#283a96")       
+      div.transition()    
+          .duration(200)    
+          .style("opacity", .9);    
+      div.html(data2[0]['type'])  
+          .style("left", (d3.event.pageX) + "px")   
+          .style("top", (d3.event.pageY - 28) + "px");  
+      })  
+    .on("mouseout", function(d) {  
+      line3.transition()
+        .duration(200)
+        .style("stroke", "#213182")   
+      div.transition()    
+          .duration(500)    
+          .style("opacity", 0)
+      })  
     .attr("d", valueline);
 
   svg2.append("path")
