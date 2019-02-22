@@ -566,13 +566,13 @@ close:hover {
   position:absolute;
   display:none;
   background-color:grey;
-  width:15%;
+  width:16%;
   height:fit-content;
   z-index:101;
   animation: fadeInOpacity 0.5s ease-in-out;
 }
 #tour p {
-  width:100%;
+  width:95%;
   font-family:'Helvetica-Neue', sans-serif;
   font-size:0.7em;
   padding:5%;

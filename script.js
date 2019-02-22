@@ -86,6 +86,7 @@ function agentListen() {
           overlay.style.display="none";
           tour.style.display="none";
           tour_pointer.display="none";
+          document.querySelector('#ISA-Purdue').style.zIndex="1";
       }
     }
       this.style.backgroundColor="#ED574B";
