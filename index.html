@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lifetime Welfare Based on College Financing</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+
+<div id="shadow">
+</div>
+
+<div class="info-lightbox">
+	<close>X</close>
+	<div class="content">
+		<h1></h1>
+		<p></p>
+	</div>
+</div>
+
+<div class="sticker">
+	<div id="premium">X%</div>
+	<p>College Premium Given Up</p>
+	<div class="info">i</div>
+</div>
+
+<div class="assessment">
+	<div class="summary">
+		<h1>Lifetime Welfare Based on College Financing</h1>
+	</div>
+
+	<div class="selection">
+		<!-- Demographics -->
+		<div class="cat" id="cat1">
+			<div class="title">
+				<h1>Individual</h1>
+				<div class="info">i</div>
+			</div>
+			<div class="filter">
+				<h2>College Graduation</h2>
+				<div class="option">
+				  <input type="radio" value="1" name="grad">
+				  <label for="grad">College Graduate</label>
+				</div>
+				<div class="option">				
+				  <input type="radio" value="0" name="grad">
+				  <label for="grad">High School Graduate</label>
+				</div>
+			</div>
+			<div class="filter">
+				<h2>Income Level</h2>
+				<div class="option">
+				  <input type="radio" value="1" name="quartile">
+				  <label for="quartile">Bottom 25%</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="2" name="quartile">
+				  <label for="quartile">25-50%</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="3" name="quartile">
+				  <label for="quartile">50-75%</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="4" name="quartile">
+				  <label for="quartile">Top 25%</label>
+				 </div>
+			</div>
+		</div>
+		<!-- Financing -->
+		<div class="cat" id="cat2">
+			<div class="title">
+				<h1>Borrowing Amount</h1>
+				<div class="info">i</div>
+			</div>
+			<div class="filter">
+				<h2>Amount</h2>
+				<div class="option">
+				  <input type="radio" value="0" name="amount">
+				  <label for="amount">$0k</label>
+				 </div>
+				<div class="option">
+				  <input type="radio" value="5000" name="amount">
+				  <label for="amount">$5k</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="30000" name="amount">
+				  <label for="amount">$30k</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="70000" name="amount">
+				  <label for="amount">$70k</label>
+				 </div>
+			</div>
+		</div>
+		<!-- Risk -->
+		<div class="cat" id="cat3">
+			<div class="title">
+				<h1>Risk</h1>
+				<div class="info">i</div>
+			</div>
+			<div class="filter">
+				<h2>Risk Aversion</h2>
+				<div class="option">
+				  <input type="radio" value="1" name="risk">
+				  <label for="risk">1</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="2" name="risk">
+				  <label for="risk">2</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="3" name="risk">
+				  <label for="risk">3</label>
+				 </div>
+				 <div class="option">
+				  <input type="radio" value="4" name="risk">
+				  <label for="risk">4</label>
+				 </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="insights">
+		<div id="profiles">
+			<h1>Explore a profile</h1>
+			<div class="profile">	
+				<h2>Jamie</h2>
+				<div class="info">i</div>
+				<i class="material-icons face" id="profile1">perm_identity</i>
+			</div>
+			<div class="profile">
+				<h2>Rob</h2>
+				<div class="info">i</div>
+				<i class="material-icons face" id="profile2">face</i>
+			</div>
+		</div>
+		
+<!-- 		<div class="learn-more">
+			<h1>Interpreting Your Results</h1>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+			College Premium sed diam nonummy nibh euismod tincidunt ut laoreet</p>
+		</div> -->
+	</div>
+</div>
+
+<div class="results">
+	<div class="agent">
+		<div class="button" id="debt">Loan</div>
+		<div class="button" id="IDR">IDR</div>
+		<div class="button" id="ISA-Purdue">ISA</div>
+		<div class="button" id="cg">Free</div>
+	</div>
+	<div class="alert">
+				<h2 id="message1">Please do this</h2>
+			</div>
+	<div class="charts">
+		<div class="chart" id="chart1" >
+			<h2 class="chart-title" id="label1"></h2>
+			<svg id="one"></svg>
+		</div>
+		<div class="chart" id="chart2">
+			<h2 class="chart-title" id="label2"></h2>
+			<svg id="two"></svg>
+		</div>
+		<div class="chart" id="chart3">
+			<h2 class="chart-title" id="label3"></h2>
+			<svg id="three"></svg>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>
