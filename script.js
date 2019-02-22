@@ -82,6 +82,11 @@ function agentListen() {
     for(i=0;i<buttons.length;i++){
       buttons[i].style.backgroundColor="#CCCC";
       buttons[i].style.color="#666666";
+      if(profile_counter==1){
+          overlay.style.display="none";
+          tour.style.display="none";
+          tour_pointer.display="none";
+      }
     }
       this.style.backgroundColor="#ED574B";
       this.style.color="white";
@@ -127,6 +132,7 @@ function listenClose(item){
 // Possible profiles --
 // Jamie: quartile=3, amount=30000, risk=3
 // Rob: quartile=4, amount=70000, risk=4
+profiles = document.querySelectorAll('.profile');
 profile1 = document.querySelector('#profile1');
 profile2 = document.querySelector('#profile2');
 profile1.onclick=function() {
@@ -145,6 +151,37 @@ profile2.onclick=function() {
   status();
   update();
 }
+
+// track first time a profile is clicked to provide tour
+profile_counter=0;
+for(i=0;i<profiles.length;i++){
+  profiles[i].onclick=function(){
+    profile_counter+=1;
+    showtour();
+  }
+}
+function showtour() {
+  if (profile_counter==1){
+    el = document.querySelector("#ISA-Purdue");
+    rect = el.getBoundingClientRect();
+    target = document.querySelector('body');
+    overlay=document.createElement('div');
+    overlay.setAttribute("class","overlay");
+    tour = document.createElement('div');
+    tour.setAttribute("id","tour");
+    tour.style.display="block";
+    tour.innerHTML="<p>Toggle to ISA to see circumstances change by choosing this financial instrument</p>"
+    tour.style.top=rect.top-110+"px";
+    tour.style.left=rect.left-20+"px";
+    target.appendChild(overlay);
+    target.appendChild(tour);
+    tour_pointer = document.createElement('div');
+    tour_pointer.setAttribute("class","arrow-down");
+    tour.appendChild(tour_pointer);
+    el.style.position="relative";
+    el.style.zIndex="102";
+    }
+  }
 
 function profileStatus() {
   if (grad_checked.value == 1 && quartile_checked.value == 2 && amount_checked.value == 30000 && risk_checked.value == 3){
