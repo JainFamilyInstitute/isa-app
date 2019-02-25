@@ -74,6 +74,7 @@ for (i=0;i<radios.length;i++){
   }
 }
 
+
 // return results based on agent (financial instrument) selection
 function agentListen() {
   for (i=0;i<buttons.length;i++){
@@ -88,9 +89,13 @@ function agentListen() {
           tour_pointer.display="none";
           document.querySelector('#ISA-Purdue').style.zIndex="1";
       }
+      if(type=="cg"){
+        document.querySelector('input[name="amount"][value="0"]').checked = true;
+      }
     }
       this.style.backgroundColor="#ED574B";
       this.style.color="white";
+      status();
       update();
     }
   }
