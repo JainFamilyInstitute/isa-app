@@ -15,8 +15,15 @@ function getInnerHeight(elem) {
 
 var chart = document.querySelector('#chart1');
 
-w = getInnerWidth(chart);
-h = getInnerHeight(chart);
+var w;
+var h;
+
+function calculateSize() {
+  w = getInnerWidth(chart);
+  h = getInnerHeight(chart);
+}
+
+calculateSize();
 
 // <-- Make Selection -->
 // Possible values --
@@ -75,6 +82,13 @@ for (i=0;i<radios.length;i++){
 }
 
 
+zero_amount = document.querySelector('input[name="amount"][value="0"]');
+zero_amount.onclick=function() {
+  document.querySelector('#cg').click();
+  status();
+  update();
+}
+
 // return results based on agent (financial instrument) selection
 function agentListen() {
   for (i=0;i<buttons.length;i++){
@@ -91,6 +105,7 @@ function agentListen() {
       }
       if(type=="cg"){
         document.querySelector('input[name="amount"][value="0"]').checked = true;
+        document.querySelector('#two').style.display="none";
       }
     }
       this.style.backgroundColor="#ED574B";
@@ -254,7 +269,7 @@ function status() {
       for(i=0;i<risk_checked.length;i++){
         risk=risk_checked[i].value;
       }
-    }
+    } 
     // profile status
       if (grad == 1 && quartile == 2 && amount == 30000 && risk== 3){
       profile1.style.backgroundColor="#ED574B";
@@ -279,6 +294,29 @@ function status() {
       profile2.style.color="#ED574B";
       profile2.style.border="0.05em solid #ED574B";
     }
+    var hexDigits = new Array
+        ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+
+    //Function to convert rgb color to hex format
+    function rgb2hex(rgb) {
+     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
+
+    function hex(x) {
+      return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+     }
+    free = document.querySelector('#cg');
+    debt = document.querySelector('#debt');
+    free_status = free.style.color;
+    console.log(free_status);
+    console.log(amount);
+    if (amount == 5000 | amount == 30000 | amount == 70000) {
+      if (free_status=="white" && grad==1){
+        debt.click();
+        console.log("need to switch")
+      }
+    }
 }
 
 
@@ -291,21 +329,40 @@ function loadData() {
     getConsumption(data);
     } else {
       getIncome(data);
-    getConsumption(data);
+      getConsumption(data);
     }
   });
 }
 
 loadData();
 
+function removeChart2() {
+  document.querySelector('#chart2').style.display="none";
+  document.querySelector('#chart1').style.width="45%";
+  document.querySelector('#chart3').style.width="45%";
+}
+
+function readdChart2() {
+  document.querySelector('#chart2').style.display="inline-block";
+  document.querySelector('#chart1').style.width="30%";
+  document.querySelector('#chart3').style.width="30%";
+}
+
 function update() {
   d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
     if(amount != 0){
+      readdChart2();
+      calculateSize();
+      calculateChartSize();
       updateIncome(data);
       updatePayments(data);
       updateConsumption(data);
+
     } else {
+      removeChart2();
+      calculateSize();
+      calculateChartSize();
       updateIncome(data);
       updateConsumption(data);
     }
@@ -313,7 +370,10 @@ function update() {
 }
 
 // chart stuff
- margin = {top: h/4, right: w/6, bottom: h/4, left: w/12},
+var areaFunction;
+var div;
+function calculateChartSize() {
+margin = {top: h/4, right: w/6, bottom: h/4, left: w/12},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
  padding = {top: margin.top + 20, right: margin.right + 20, bottom: margin.bottom+20, left: margin.left},
@@ -325,7 +385,7 @@ y = d3.scaleLinear()
   .rangeRound([height,0]);
 
   //Initiate the area line function
-  var areaFunction = d3.area()
+  areaFunction = d3.area()
   .x(function (d) {
     return x(d.key);
   })
@@ -342,9 +402,12 @@ valueline2 = d3.line()
     .x(function(d) { return x(d.key); })
     .y(function(d) { return y(d.value); });
 
-var div = d3.select("body").append("div") 
+div = d3.select("body").append("div") 
     .attr("class", "tooltip")       
     .style("opacity", 0);
+}
+
+calculateChartSize();
 
 // get data functions
 
@@ -411,7 +474,7 @@ svg1.append("text")
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+  x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
  // add the area
@@ -438,6 +501,7 @@ svg1.append("text")
   // Add the X Axis
   svg1.append("g")
       .attr("transform", "translate(0," + height + ")")
+      .attr("id", "x-axis1")
       .call(d3.axisBottom(x));
 
   // Add the Y Axis
@@ -829,8 +893,10 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
 function updateIncome(data) {
 
 variable= 'Income';
-
-var svg1 = d3.select("#one").transition();
+   
+var svg1 = d3.select("#one")
+ .attr("width", width + margin.left + margin.right)
+ .transition();
 
   // Update fetch: Income Data
    data1 = data.filter(function(d) { 
@@ -860,13 +926,18 @@ var svg1 = d3.select("#one").transition();
 
   // Scale the range of the data
   // x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
-  x.domain([d3.min(result, function(d) { return d.key; }), 65]);
+ x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
 
    // add the area
   svg1.select("#area1")
     .duration(750)
     .attr("d", areaFunction(result));
+
+  svg1.select(".x-label")
+    .duration(750)
+    .attr("x", width + 25)             
+    .attr("y", height + 15);
 
   // Add the valueline path.
   svg1.select("#line1")
@@ -895,7 +966,10 @@ var svg1 = d3.select("#one").transition();
 
 function updatePayments(data) {
 
-var svg2 = d3.select("#two").transition();
+var svg2 = d3.select("#two")
+.attr("width", width + margin.left + margin.right)
+.transition();
+
 if(type != 'debt'){
   d3.select('#label2').html("Lifetime <em2>"+ type + " Payments</em2>");
 } else {
@@ -1062,7 +1136,9 @@ function updateConsumption(data) {
 
 variable= 'Consumption';
 
-var svg3 = d3.select("#three").transition();
+var svg3 = d3.select("#three")
+.attr("width", width + margin.left + margin.right)
+.transition();
 
   // filter by selection
   data = data.filter(function(d) { 
@@ -1107,6 +1183,11 @@ var svg3 = d3.select("#three").transition();
   svg3.select("#area2")
     .duration(750)
     .attr("d", areaFunction(result));
+
+  svg3.select(".x-label")
+    .duration(750)
+    .attr("x", width + 25)             
+    .attr("y", height + 15);
 
   svg3.select("#line4")
       .duration(750)
