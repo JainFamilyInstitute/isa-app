@@ -863,7 +863,7 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   consumption_banner =  d3.select("#net-consumption")
     .append("div")
     .attr("id", "consumption_sum")
-    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working age consumption total</h2>");
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2>");
 
   // Add the valueline path.
   svg3.append("path")
@@ -1187,7 +1187,7 @@ var svg3 = d3.select("#three")
 
 
   d3.select("#consumption_sum")
-    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working age consumption total</h2>");
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>orking Age Welfare</h2>");
 
      // add the area
   svg3.select("#area2")
