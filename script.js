@@ -835,6 +835,7 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   cformat = d3.format("$.4s")
   console.log(cformat(consumption_sum));
 
+
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
@@ -858,6 +859,11 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
           .style("opacity", 0)
     })
     .attr("d", areaFunction(result));
+
+  consumption_banner =  d3.select("#net-consumption")
+    .append("div")
+    .attr("id", "consumption_sum")
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working age consumption total</h2>");
 
   // Add the valueline path.
   svg3.append("path")
@@ -1178,6 +1184,10 @@ var svg3 = d3.select("#three")
   // Scale the range of the data
   x.domain([d3.min(result, function(d) { return d.key; }), d3.max(result, function(d) { return d.key; })]);
   y.domain([0, d3.max(result, function(d) { return d.value; })]);
+
+
+  d3.select("#consumption_sum")
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working age consumption total</h2>");
 
      // add the area
   svg3.select("#area2")
