@@ -1187,7 +1187,7 @@ var svg3 = d3.select("#three")
 
 
   d3.select("#consumption_sum")
-    .html("<text>"+cformat(consumption_sum)+"</text><h2>orking Age Welfare</h2>");
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2>");
 
      // add the area
   svg3.select("#area2")
