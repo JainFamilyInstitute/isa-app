@@ -77,6 +77,11 @@ for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     document.querySelector('input[name="grad"][value="0"]').checked = false;
     status();
+    if(amount==0){
+          removeChart2();
+    } else {
+          readdChart2();
+    }
     update();
   }
 }
@@ -94,24 +99,26 @@ function agentListen() {
   for (i=0;i<buttons.length;i++){
   buttons[i].onclick= function() {
     type = this.id;
+    if(amount!="0"){
     for(i=0;i<buttons.length;i++){
-      buttons[i].style.backgroundColor="#CCCC";
-      buttons[i].style.color="#666666";
-      if(profile_counter==1){
-          overlay.style.display="none";
-          tour.style.display="none";
-          tour_pointer.display="none";
-          document.querySelector('#ISA-Purdue').style.zIndex="1";
-      }
-      if(type=="cg"){
-        document.querySelector('input[name="amount"][value="0"]').checked = true;
-        document.querySelector('#two').style.display="none";
-      }
+          buttons[i].style.backgroundColor="#CCCC";
+          buttons[i].style.color="#666666";
+          if(profile_counter==1){
+              overlay.style.display="none";
+              tour.style.display="none";
+              tour_pointer.display="none";
+              document.querySelector('#ISA-Purdue').style.zIndex="1";
+          }
+          if(type=="cg"){
+            document.querySelector('input[name="amount"][value="0"]').checked = true;
+            document.querySelector('#two').style.display="none";
+          }
     }
       this.style.backgroundColor="#ED574B";
       this.style.color="white";
       status();
       update();
+      }
     }
   }
 }
@@ -119,35 +126,40 @@ function agentListen() {
 agentListen();
 
 // popup info lightbox
-infos = document.querySelectorAll('.info');
-lightbox = document.querySelector('.info-lightbox');
-shadow = document.querySelector('#shadow')
-console.log(infos);
-for(i=0;i<infos.length;i++){
-  infos[i].onclick=function() {
-    parent = this.parentNode;
-    grandparent = this.parentNode.parentNode;
-    shadow.style.display="block";
-    lightbox.style.display="inline-block";
-    listenClose('.info-lightbox');
-    title = this.previousElementSibling.innerHTML;
-    lightbox.querySelector('h1').innerHTML=title;
-    d3.csv('data/definitions.csv',function(error,data){
-      data= data.filter(function(d){return d.category == title})
-      lightbox.querySelector('p').innerHTML="";
-      lightbox.querySelector('p').innerHTML+=data[0]['definition'];
-    });
+
+function getInfo() {
+  infos = document.querySelectorAll('.info');
+  lightbox = document.querySelector('.info-lightbox');
+  shadow = document.querySelector('#shadow')
+  console.log(infos);
+  for(i=0;i<infos.length;i++){
+    infos[i].onclick=function() {
+      console.log("click");
+      parent = this.parentNode;
+      grandparent = this.parentNode.parentNode;
+      shadow.style.display="block";
+      lightbox.style.display="inline-block";
+      listenClose('.info-lightbox');
+      title = this.previousElementSibling.innerHTML;
+      lightbox.querySelector('h1').innerHTML=title;
+      d3.csv('data/definitions.csv',function(error,data){
+        data= data.filter(function(d){return d.category == title})
+        lightbox.querySelector('p').innerHTML="";
+        lightbox.querySelector('p').innerHTML+=data[0]['definition'];
+      });
+    }
+  }
+
+  function listenClose(item){
+    parent = document.querySelector(item);
+    close =parent.querySelector('close');
+    close.onclick=function() {
+      parent.style.display="none";
+      shadow.style.display="none";
+    }
   }
 }
 
-function listenClose(item){
-  parent = document.querySelector(item);
-  close =parent.querySelector('close');
-  close.onclick=function() {
-    parent.style.display="none";
-    shadow.style.display="none";
-  }
-}
 
 // profile filter selection
 // Possible profiles --
@@ -327,9 +339,11 @@ function loadData() {
     getIncome(data);
     getPayments(data);
     getConsumption(data);
+    getInfo();
     } else {
       getIncome(data);
       getConsumption(data);
+      getInfo();
     }
   });
 }
@@ -351,20 +365,20 @@ function readdChart2() {
 function update() {
   d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
-    if(amount != 0){
+    if(amount == 0){
+      calculateSize();
+      calculateChartSize();
+      updateIncome(data);
+      updateConsumption(data);
+      getInfo();
+    } else {
       readdChart2();
       calculateSize();
       calculateChartSize();
       updateIncome(data);
       updatePayments(data);
       updateConsumption(data);
-
-    } else {
-      removeChart2();
-      calculateSize();
-      calculateChartSize();
-      updateIncome(data);
-      updateConsumption(data);
+      getInfo();
     }
   });
 }
@@ -863,7 +877,7 @@ d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
   consumption_banner =  d3.select("#net-consumption")
     .append("div")
     .attr("id", "consumption_sum")
-    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2>");
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2><div class='info'>i</div>");
 
   // Add the valueline path.
   svg3.append("path")
@@ -1187,7 +1201,7 @@ var svg3 = d3.select("#three")
 
 
   d3.select("#consumption_sum")
-    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2>");
+    .html("<text>"+cformat(consumption_sum)+"</text><h2>Working Age Welfare</h2><div class='info'>i</div>");
 
      // add the area
   svg3.select("#area2")

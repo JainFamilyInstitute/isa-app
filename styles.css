@@ -459,7 +459,7 @@ em3 {
   color:#666666;
   display:none;
   position:absolute;
-  z-index:100;
+  z-index:200;
   margin:auto;
   width:80%;
   height:80vh;
@@ -613,6 +613,14 @@ close:hover {
   font-size:0.5em;
   text-transform:uppercase;
   letter-spacing:0.05em;
+  display:inline-block;
+  margin-right:2%;
+}
+#net-consumption .info {
+  display:inline-block;
+  transform-origin:0 0;
+  transform:scale(0.5);
+  vertical-align:bottom
 }
 #net-consumption text {
   color:#F9AF48;
