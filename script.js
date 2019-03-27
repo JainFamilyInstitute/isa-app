@@ -77,7 +77,8 @@ for (i=0;i<radios.length;i++){
   radios[i].onchange=function() {
     document.querySelector('input[name="grad"][value="0"]').checked = false;
     status();
-    if(amount==0){
+    cg=document.querySelector('#cg').style.color;
+    if(cg=="white"){
           removeChart2();
     } else {
           readdChart2();
@@ -111,7 +112,6 @@ function agentListen() {
           }
           if(type=="cg"){
             document.querySelector('input[name="amount"][value="0"]').checked = true;
-            document.querySelector('#two').style.display="none";
           }
     }
       this.style.backgroundColor="#ED574B";
@@ -263,12 +263,6 @@ function status() {
     }
     if (grad_checked.length == 1 & quartile_checked.length == 1 & amount_checked.length == 1 & risk_checked.length == 1){
       alerts[0].style.display="none";
-      svg1.style.display="inline-block";
-      svg2.style.display="inline-block";
-      svg3.style.display="inline-block";
-      chart1.style.display="inline-block";
-      chart2.style.display="inline-block";
-      chart3.style.display="inline-block";
       for(i=0;i<grad_checked.length;i++){
         grad=grad_checked[i].value;
       }
@@ -281,6 +275,17 @@ function status() {
       for(i=0;i<risk_checked.length;i++){
         risk=risk_checked[i].value;
       }
+      chart1.style.display="inline-block";
+      if(amount==0){
+        removeChart2();
+        update();
+      }else {
+        chart2.style.display="inline-block";
+      }
+      chart3.style.display="inline-block";
+      // svg1.style.display="inline-block";
+      // svg2.style.display="inline-block";
+      // svg3.style.display="inline-block";
     } 
     // profile status
       if (grad == 1 && quartile == 2 && amount == 30000 && risk== 3){
@@ -331,11 +336,10 @@ function status() {
     }
 }
 
-
 function loadData() {
   d3.csv("data/data_vis2.csv", function(error, data) {
   //   if (error) throw error;
-    if(amount != 0){
+    if(amount != 0 | free_status =="white"){
     getIncome(data);
     getPayments(data);
     getConsumption(data);
@@ -364,8 +368,9 @@ function readdChart2() {
 
 function update() {
   d3.csv("data/data_vis2.csv", function(error, data) {
+
   //   if (error) throw error;
-    if(amount == 0){
+    if(amount == 0 ){
       calculateSize();
       calculateChartSize();
       updateIncome(data);
