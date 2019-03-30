@@ -583,7 +583,7 @@ close:hover {
     height:60vh;
   }
   #net-consumption {
-    top:-10%;
+    top:-15%;
   }
   #chart3 {
     margin-top:10%;
@@ -623,6 +623,12 @@ close:hover {
   }
   #cat3 {
     margin-top:5%;
+  }
+  .info-lightbox {
+    width:60%;
+  }
+  .chart-title {
+    margin-bottom:-20%;
   }
 }
 

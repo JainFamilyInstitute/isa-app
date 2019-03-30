@@ -132,6 +132,33 @@ function getInfo() {
   lightbox = document.querySelector('.info-lightbox');
   console.log(infos);
   for(i=0;i<infos.length;i++){
+    if(window.innerWidth<767){
+    infos[i].onclick=function() {
+      function getpos(event) {
+      var e = window.event;
+        x = e.clientX + "px";
+          y = e.clientY + "px";
+      }
+      getpos();
+      parent = this.parentNode;
+      grandparent = this.parentNode.parentNode;
+      lightbox.style.left=x;
+      lightbox.style.top=y;
+      lightbox.style.display="inline-block";
+      // listenClose('.info-lightbox');
+      title = this.previousElementSibling.innerHTML;
+      lightbox.querySelector('h1').innerHTML=title;
+      d3.csv('data/definitions.csv',function(error,data){
+        data= data.filter(function(d){return d.category == title})
+        lightbox.querySelector('p').innerHTML="";
+        lightbox.querySelector('p').innerHTML+=data[0]['definition'];
+      });
+    }
+    infos[i].onmouseout=function() {
+       lightbox.style.display="none";
+    }
+
+    } else {
     infos[i].onmouseover=function() {
       function getpos(event) {
       var e = window.event;
@@ -155,6 +182,8 @@ function getInfo() {
     }
     infos[i].onmouseout=function() {
        lightbox.style.display="none";
+    }
+
     }
   }
 
