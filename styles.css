@@ -587,7 +587,6 @@ close:hover {
   }
   #chart3 {
     margin-top:10%;
-    height:80vh!important;
   }
   #chart1{
     margin-top:10%;
@@ -618,6 +617,12 @@ close:hover {
   }
   #tour {
     width:50%;
+  }
+  .cat {
+    width:40%;
+  }
+  #cat3 {
+    margin-top:5%;
   }
 }
 
