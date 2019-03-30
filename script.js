@@ -130,16 +130,21 @@ agentListen();
 function getInfo() {
   infos = document.querySelectorAll('.info');
   lightbox = document.querySelector('.info-lightbox');
-  shadow = document.querySelector('#shadow')
   console.log(infos);
   for(i=0;i<infos.length;i++){
-    infos[i].onclick=function() {
-      console.log("click");
+    infos[i].onmouseover=function() {
+      function getpos(event) {
+      var e = window.event;
+        x = e.clientX + "px";
+          y = e.clientY + "px";
+      }
+      getpos();
       parent = this.parentNode;
       grandparent = this.parentNode.parentNode;
-      shadow.style.display="block";
+      lightbox.style.left=x;
+      lightbox.style.top=y;
       lightbox.style.display="inline-block";
-      listenClose('.info-lightbox');
+      // listenClose('.info-lightbox');
       title = this.previousElementSibling.innerHTML;
       lightbox.querySelector('h1').innerHTML=title;
       d3.csv('data/definitions.csv',function(error,data){
@@ -147,6 +152,9 @@ function getInfo() {
         lightbox.querySelector('p').innerHTML="";
         lightbox.querySelector('p').innerHTML+=data[0]['definition'];
       });
+    }
+    infos[i].onmouseout=function() {
+       lightbox.style.display="none";
     }
   }
 
