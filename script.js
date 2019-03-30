@@ -364,14 +364,24 @@ loadData();
 
 function removeChart2() {
   document.querySelector('#chart2').style.display="none";
-  document.querySelector('#chart1').style.width="45%";
-  document.querySelector('#chart3').style.width="45%";
+  if(window.innerWidth<767){
+    document.querySelector('#chart1').style.width="100%";
+    document.querySelector('#chart3').style.width="100%";
+  }else {
+    document.querySelector('#chart1').style.width="45%";
+    document.querySelector('#chart3').style.width="45%";
+  }
 }
 
 function readdChart2() {
   document.querySelector('#chart2').style.display="inline-block";
-  document.querySelector('#chart1').style.width="30%";
-  document.querySelector('#chart3').style.width="30%";
+  if(window.innerWidth<767){
+    document.querySelector('#chart1').style.width="100%";
+    document.querySelector('#chart3').style.width="100%";
+  }else {
+    document.querySelector('#chart1').style.width="30%";
+    document.querySelector('#chart3').style.width="30%";
+  }
 }
 
 function update() {
