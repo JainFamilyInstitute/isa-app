@@ -67,7 +67,7 @@ var svg2 = document.querySelector('#two');
 var svg3 = document.querySelector('#three');
 var buttons = document.querySelectorAll('.button');
 debt_button = document.getElementById('debt');
-debt_button.style.backgroundColor="#ED574B";
+debt_button.style.backgroundColor="#572EFF";
 debt_button.style.color="white";
 
 status();
@@ -114,7 +114,7 @@ function agentListen() {
             document.querySelector('input[name="amount"][value="0"]').checked = true;
           }
     }
-      this.style.backgroundColor="#ED574B";
+      this.style.backgroundColor="#572EFF";
       this.style.color="white";
       status();
       update();
@@ -218,21 +218,21 @@ function showtour() {
 
 function profileStatus() {
   if (grad_checked.value == 1 && quartile_checked.value == 2 && amount_checked.value == 30000 && risk_checked.value == 3){
-    profile1.style.backgroundColor="#ED574B";
+    profile1.style.backgroundColor="#572EFF";
     profile1.style.color="#white";
-    profile1.style.border="0.05em solid #ED574B";
+    profile1.style.border="0.05em solid #572EFF";
   } else if (grad_checked.value == 1 && quartile_checked.value == 1 && amount_checked.value == 70000 && risk_checked.value == 4){
-    profile2.style.backgroundColor="#ED574B";
+    profile2.style.backgroundColor="##572EFF";
     profile2.style.color="white";
-    profile2.style.border="0.05em solid #ED574B";
+    profile2.style.border="0.05em solid #572EFF";
   } else {
     // don't check any profile
     profile1.style.backgroundColor="white";
-    profile1.style.color="#ED574B";
-    profile1.style.border="0.05em solid #ED574B";
+    profile1.style.color="#572EFF";
+    profile1.style.border="0.05em solid #572EFF";
     profile2.style.backgroundColor="white";
-    profile2.style.color="#ED574B";
-    profile2.style.border="0.05em solid #ED574B";
+    profile2.style.color="#572EFF";
+    profile2.style.border="0.05em solid #572EFF";
   }
 }
 
@@ -289,27 +289,27 @@ function status() {
     } 
     // profile status
       if (grad == 1 && quartile == 2 && amount == 30000 && risk== 3){
-      profile1.style.backgroundColor="#ED574B";
+      profile1.style.backgroundColor="#572EFF";
       profile1.style.color="white";
-      profile1.style.border="0.05em solid #ED574B";
+      profile1.style.border="0.05em solid #572EFF";
       profile2.style.backgroundColor="white";
-      profile2.style.color="#ED574B";
-      profile2.style.border="0.05em solid #ED574B";
+      profile2.style.color="#572EFF";
+      profile2.style.border="0.05em solid #572EFF";
     } else if (grad == 1 && quartile == 1 && amount == 70000 && risk == 4){
-      profile2.style.backgroundColor="#ED574B";
+      profile2.style.backgroundColor="#572EFF";
       profile2.style.color="white";
-      profile2.style.border="0.05em solid #ED574B";
+      profile2.style.border="0.05em solid #572EFF";
       profile1.style.backgroundColor="white";
-      profile1.style.color="#ED574B";
-      profile1.style.border="0.05em solid #ED574B";
+      profile1.style.color="#572EFF";
+      profile1.style.border="0.05em solid #572EFF";
     } else {
       // don't check any profile
       profile1.style.backgroundColor="white";
-      profile1.style.color="#ED574B";
-      profile1.style.border="0.05em solid #ED574B";
+      profile1.style.color="#572EFF";
+      profile1.style.border="0.05em solid #572EFF";
       profile2.style.backgroundColor="white";
-      profile2.style.color="#ED574B";
-      profile2.style.border="0.05em solid #ED574B";
+      profile2.style.color="#572EFF";
+      profile2.style.border="0.05em solid #572EFF";
     }
     var hexDigits = new Array
         ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
