@@ -470,7 +470,7 @@ svg1.append("text")
   //Append the second stop - white transparant almost at the end
   areaGradient.append("stop")
     .attr("offset", "100%")
-    .attr("stop-color", "white")
+    .attr("stop-color", "#F1CFCE")
     .attr("stop-opacity", 0);
 
   // First fetch: Income Data
@@ -824,7 +824,7 @@ svg3.append("text")
   //Append the second stop - white transparant almost at the end
   areaGradient2.append("stop")
     .attr("offset", "100%")
-    .attr("stop-color", "white")
+    .attr("stop-color", "#FBE0B7")
     .attr("stop-opacity", 0);
 
 d3.select('#label3').html("Lifetime "+ "<em3>Consumption</em1>");
