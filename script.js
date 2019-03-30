@@ -5,6 +5,14 @@ var amount;
 var type;
 var risk;
 
+if(window.innerWidth<767){
+  // don't reload on window resize
+} else {
+  window.onresize=function() {
+    location.reload();
+  }
+}
+
 function getInnerWidth(elem) {
     return parseFloat(window.getComputedStyle(elem).width);
 }
@@ -243,7 +251,11 @@ function showtour() {
     tour.innerHTML="<p>Toggle to ISA to see circumstances change by choosing this financial instrument</p>"
     tour.style.top=rect.top-110+"px";
     tour.style.left=rect.left-20+"px";
-    target.appendChild(overlay);
+    if(window.innerWidth<767){
+      // don't appen overlay
+    } else {
+      target.appendChild(overlay);
+    }
     target.appendChild(tour);
     tour_pointer = document.createElement('div');
     tour_pointer.setAttribute("class","arrow-down");
