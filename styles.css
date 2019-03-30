@@ -203,7 +203,7 @@ input[type=radio] {
 		   position: relative;
 	       cursor: pointer;
     }
-    input[type=radio]:before {
+input[type=radio]:before {
          content: "";
          display: block;
          position: absolute;
@@ -629,6 +629,15 @@ close:hover {
   }
   .chart-title {
     margin-bottom:-20%;
+  }
+  input[type=radio]:before {
+         top: -10%;
+  }
+    input[type=radio]:checked:after {
+         top: -10%;
+  }
+  .assessment h1 {
+    width:90%;
   }
 }
 
