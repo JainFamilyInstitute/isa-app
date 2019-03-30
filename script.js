@@ -5,7 +5,7 @@ var amount;
 var type;
 var risk;
 
-if(window.innerWidth<767){
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
   // don't reload on window resize
 } else {
   window.onresize=function() {
