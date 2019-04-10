@@ -659,7 +659,7 @@ close:hover {
   #profiles {
     transform:scale(1.5);
     transform-origin: 0 0;
-    float:right;
+    float:left;
     width:50%;
   }
   .results {
