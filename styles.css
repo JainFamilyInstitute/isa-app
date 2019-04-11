@@ -215,7 +215,7 @@ input[type=radio]:before {
          background-color: white;
 }
     input[type=radio]:checked:after {
-         content: "X";
+         content: "";
          color:white;
          font-weight: 600;
          text-align:center;
